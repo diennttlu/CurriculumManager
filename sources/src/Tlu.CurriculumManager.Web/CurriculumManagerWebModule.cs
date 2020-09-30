@@ -36,6 +36,11 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.AspNetCore.Mvc.UI.Components.LayoutHook;
+using Tlu.CurriculumManager.Web.Pages.Shared.Components.FluidContainer;
+using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Bundling;
+using Tlu.CurriculumManager.Web.Bundle;
 
 namespace Tlu.CurriculumManager.Web
 {
@@ -81,6 +86,31 @@ namespace Tlu.CurriculumManager.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+
+            Configure<AbpLayoutHookOptions>(options =>
+            {
+                options.Add(
+                    LayoutHooks.Body.Last,
+                    typeof(FluidContainerViewComponent)
+                );
+            });
+
+            Configure<AbpBundlingOptions>(options =>
+            {
+                options.StyleBundles.Configure(
+                    StandardBundles.Styles.Global,
+                    bundleConfiguration =>
+                    {
+                        bundleConfiguration.AddContributors(typeof(GlobalStyleBundleContributor));
+                    });
+
+                options.ScriptBundles.Configure(
+                   StandardBundles.Scripts.Global,
+                   bundleConfiguration =>
+                   {
+                       bundleConfiguration.AddContributors(typeof(GlobalScriptBundleContributor));
+                   });
+            });
         }
 
         private void ConfigureUrls(IConfiguration configuration)
