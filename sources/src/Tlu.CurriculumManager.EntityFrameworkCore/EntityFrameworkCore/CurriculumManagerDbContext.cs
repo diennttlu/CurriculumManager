@@ -22,6 +22,31 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
     {
         public DbSet<AppUser> Users { get; set; }
 
+        public DbSet<SchoolYear> SchoolYears { get; set; }
+
+        public DbSet<Faculty> Faculties { get; set; }
+
+        public DbSet<Major> Majors { get; set; }
+
+        public DbSet<Curriculum> Curriculums { get; set; }
+
+        public DbSet<CurriculumDetail> CurriculumDetails { get; set; }
+        
+        public DbSet<KnowledgeGroup> KnowledgeGroups { get; set; }
+
+        public DbSet<Subject> Subjects { get; set; }
+
+        public DbSet<SubjectGroup> KnowledgeGroupDetails { get; set; }
+
+        public DbSet<Outline> Outlines { get; set; }
+
+        public DbSet<Document> Documents { get; set; }
+
+        public DbSet<OutlineDocument> OutlineDocuments { get;set; }
+
+        public DbSet<UserSubject> UserSubjects { get; set; }
+
+
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside CurriculumManagerDbContextModelCreatingExtensions.ConfigureCurriculumManager
          */
