@@ -28,14 +28,11 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<int>("ApproveStatus")
+                        .HasColumnType("int");
 
                     b.Property<int>("MajorId")
                         .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -54,41 +51,12 @@ namespace Tlu.CurriculumManager.Migrations
                     b.ToTable("AppCurriculums");
                 });
 
-            modelBuilder.Entity("Tlu.CurriculumManager.CurriculumDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CurriculumId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("KnowledgeGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(1)")
-                        .HasMaxLength(1);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CurriculumId");
-
-                    b.HasIndex("KnowledgeGroupId");
-
-                    b.ToTable("AppCurriculumDetails");
-                });
-
             modelBuilder.Entity("Tlu.CurriculumManager.Document", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<int>("InLibrary")
                         .HasColumnType("int")
@@ -99,9 +67,6 @@ namespace Tlu.CurriculumManager.Migrations
 
                     b.Property<string>("LibraryCode")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -119,12 +84,6 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(128)")
@@ -135,34 +94,24 @@ namespace Tlu.CurriculumManager.Migrations
                     b.ToTable("AppFaculties");
                 });
 
-            modelBuilder.Entity("Tlu.CurriculumManager.KnowledgeGroup", b =>
+            modelBuilder.Entity("Tlu.CurriculumManager.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int?>("DisplayOrder")
-                        .HasColumnType("int")
-                        .HasMaxLength(2);
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<int>("FacultyId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppKnowledgeGroups");
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("AppGenres");
                 });
 
             modelBuilder.Entity("Tlu.CurriculumManager.Major", b =>
@@ -172,14 +121,8 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<int>("FacultyId")
                         .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -200,25 +143,27 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ApproveStatus")
+                        .HasColumnType("int");
+
                     b.Property<string>("Assessment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("Goal")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
+                    b.Property<int>("OutlineId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OutlineId");
 
                     b.HasIndex("SubjectId")
                         .IsUnique();
@@ -264,12 +209,6 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("nvarchar(4)")
                         .HasMaxLength(4);
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(128)")
@@ -298,14 +237,8 @@ namespace Tlu.CurriculumManager.Migrations
                     b.Property<string>("Condition")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTimeOffset>("Created")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("HoursStudy")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("Modified")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -330,7 +263,34 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CurriculumDetailId")
+                    b.Property<int>("CurriculumId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CurriculumId");
+
+                    b.ToTable("AppSubjectGroups");
+                });
+
+            modelBuilder.Entity("Tlu.CurriculumManager.SubjectGroupDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SubjectGroupId")
                         .HasColumnType("int");
 
                     b.Property<int>("SubjectId")
@@ -338,11 +298,11 @@ namespace Tlu.CurriculumManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurriculumDetailId");
+                    b.HasIndex("SubjectGroupId");
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("AppSubjectGroups");
+                    b.ToTable("AppSubjectGroupDetails");
                 });
 
             modelBuilder.Entity("Tlu.CurriculumManager.UserSubject", b =>
@@ -954,6 +914,9 @@ namespace Tlu.CurriculumManager.Migrations
                     b.Property<string>("ExtraProperties")
                         .HasColumnName("ExtraProperties")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("GenreId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
@@ -2133,17 +2096,11 @@ namespace Tlu.CurriculumManager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Tlu.CurriculumManager.CurriculumDetail", b =>
+            modelBuilder.Entity("Tlu.CurriculumManager.Genre", b =>
                 {
-                    b.HasOne("Tlu.CurriculumManager.Curriculum", "Curriculum")
-                        .WithMany("CurriculumDetails")
-                        .HasForeignKey("CurriculumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Tlu.CurriculumManager.KnowledgeGroup", "KnowledgeGroup")
-                        .WithMany("CurriculumDetails")
-                        .HasForeignKey("KnowledgeGroupId")
+                    b.HasOne("Tlu.CurriculumManager.Faculty", "Faculty")
+                        .WithMany("Genres")
+                        .HasForeignKey("FacultyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -2159,6 +2116,12 @@ namespace Tlu.CurriculumManager.Migrations
 
             modelBuilder.Entity("Tlu.CurriculumManager.Outline", b =>
                 {
+                    b.HasOne("Tlu.CurriculumManager.SchoolYear", "SchoolYear")
+                        .WithMany("Outlines")
+                        .HasForeignKey("OutlineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Tlu.CurriculumManager.Subject", "Subject")
                         .WithOne("Outline")
                         .HasForeignKey("Tlu.CurriculumManager.Outline", "SubjectId")
@@ -2183,14 +2146,23 @@ namespace Tlu.CurriculumManager.Migrations
 
             modelBuilder.Entity("Tlu.CurriculumManager.SubjectGroup", b =>
                 {
-                    b.HasOne("Tlu.CurriculumManager.CurriculumDetail", "CurriculumDetail")
+                    b.HasOne("Tlu.CurriculumManager.Curriculum", "Curriculum")
                         .WithMany("SubjectGroups")
-                        .HasForeignKey("CurriculumDetailId")
+                        .HasForeignKey("CurriculumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Tlu.CurriculumManager.SubjectGroupDetail", b =>
+                {
+                    b.HasOne("Tlu.CurriculumManager.SubjectGroup", "SubjectGroup")
+                        .WithMany("SubjectGroupDetails")
+                        .HasForeignKey("SubjectGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Tlu.CurriculumManager.Subject", "Subject")
-                        .WithMany("SubjectGroups")
+                        .WithMany("SubjectGroupDetails")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -30,13 +30,11 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
 
         public DbSet<Curriculum> Curriculums { get; set; }
 
-        public DbSet<CurriculumDetail> CurriculumDetails { get; set; }
-        
-        public DbSet<KnowledgeGroup> KnowledgeGroups { get; set; }
-
         public DbSet<Subject> Subjects { get; set; }
 
-        public DbSet<SubjectGroup> KnowledgeGroupDetails { get; set; }
+        public DbSet<SubjectGroup> SubjectGroups { get; set; }
+
+        public DbSet<SubjectGroupDetail> SubjectGroupDetails { get; set; }
 
         public DbSet<Outline> Outlines { get; set; }
 
@@ -45,6 +43,8 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
         public DbSet<OutlineDocument> OutlineDocuments { get;set; }
 
         public DbSet<UserSubject> UserSubjects { get; set; }
+
+        public DbSet<Genre> Genres { get; set; }
 
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
@@ -70,14 +70,17 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 b.ConfigureByConvention();
                 b.ConfigureAbpUser();
 
+                b.Property(x => x.GenreId).IsRequired(false);
+
                 /* Configure mappings for your additional properties
                  * Also see the CurriculumManagerEfCoreEntityExtensionMappings class
                  */
+
             });
 
             /* Configure your own tables/entities inside the ConfigureCurriculumManager method */
 
-            builder.ConfigureCurriculumManager();
+            builder.ConfigureCurriculumManager(false);
         }
     }
 }

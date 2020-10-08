@@ -1,5 +1,25 @@
 ﻿body {
 }
+
 .card-body {
-    font-size: 14px;
+    font-size: 12px;
+}
+
+table th input[type=text],.table th select {
+    font-size: 12px;
+}
+
+.dataTables_length select.custom-select {
+    font-size: 12px;
+}
+
+.table td {
+    padding: 3px 10px;
+}
+
+.table .content-cell {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

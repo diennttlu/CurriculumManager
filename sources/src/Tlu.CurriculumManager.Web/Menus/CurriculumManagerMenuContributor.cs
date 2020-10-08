@@ -28,7 +28,19 @@ namespace Tlu.CurriculumManager.Web.Menus
 
             var l = context.GetLocalizer<CurriculumManagerResource>();
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem(CurriculumManagerMenus.Home, l["Menu:Home"], "~/"));
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Home, l["Menu:Home"], "~/"));
+
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Home, l["Menu:SchoolYear"], "/SchoolYears"));
+
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Faculty, l["Menu:Faculty"], "/Faculties"));
+
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Major, l["Menu:Major"], "/Majors"));
+
+            context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Subject"])
+                .AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Subjects.SubjectManagement, l["Menu:Subject.SubjectManagement"], "/Subjects")
+                )
+            );
         }
     }
 }

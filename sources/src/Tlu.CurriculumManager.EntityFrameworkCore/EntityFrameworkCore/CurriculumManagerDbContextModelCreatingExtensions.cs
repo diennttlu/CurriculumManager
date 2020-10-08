@@ -6,7 +6,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
 {
     public static class CurriculumManagerDbContextModelCreatingExtensions
     {
-        public static void ConfigureCurriculumManager(this ModelBuilder builder)
+        public static void ConfigureCurriculumManager(this ModelBuilder builder, bool isMigrationDbContext)
         {
             Check.NotNull(builder, nameof(builder));
 
@@ -36,6 +36,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.Property(x => x.Name).IsRequired().HasMaxLength(128);
                 e.Property(x => x.Course).IsRequired().HasMaxLength(4);
                 e.HasMany(x => x.Curriculums).WithOne(x => x.SchoolYear).HasForeignKey(x => x.SchoolYearId);
+                e.HasMany(x => x.Outlines).WithOne(x => x.SchoolYear).HasForeignKey(x => x.OutlineId);
             });
 
             builder.Entity<Curriculum>(e =>
@@ -44,32 +45,25 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.ConfigureByConvention();
 
                 e.Property(x => x.Name).IsRequired().HasMaxLength(512);
-                e.HasMany(x => x.CurriculumDetails).WithOne(x => x.Curriculum).HasForeignKey(x => x.CurriculumId);
-            });
-
-            builder.Entity<KnowledgeGroup>(e =>
-            {
-                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "KnowledgeGroups", CurriculumManagerConsts.DbSchema);
-                e.ConfigureByConvention();
-
-                e.Property(x => x.Name).IsRequired().HasMaxLength(1024);
-                e.Property(x => x.DisplayOrder).HasMaxLength(2);
-                e.HasMany(x => x.CurriculumDetails).WithOne(x => x.KnowledgeGroup).HasForeignKey(x => x.KnowledgeGroupId);
-            });
-
-            builder.Entity<CurriculumDetail>(e =>
-            {
-                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "CurriculumDetails", CurriculumManagerConsts.DbSchema);
-                e.ConfigureByConvention();
-
-                e.Property(x => x.Note).HasMaxLength(1);
-                e.HasMany(x => x.SubjectGroups).WithOne(x => x.CurriculumDetail).HasForeignKey(x => x.CurriculumDetailId);
+                e.Property(x => x.ApproveStatus).IsRequired();
+                e.HasMany(x => x.SubjectGroups).WithOne(x => x.Curriculum).HasForeignKey(x => x.CurriculumId);
             });
 
             builder.Entity<SubjectGroup>(e =>
             {
                 e.ToTable(CurriculumManagerConsts.DbTablePrefix + "SubjectGroups", CurriculumManagerConsts.DbSchema);
                 e.ConfigureByConvention();
+
+                e.Property(x => x.Name).IsRequired();
+                e.Property(x => x.CurriculumId).IsRequired();
+                e.HasMany(x => x.SubjectGroupDetails).WithOne(x => x.SubjectGroup).HasForeignKey(x => x.SubjectGroupId);
+            });
+
+            builder.Entity<SubjectGroupDetail>(e =>
+            {
+                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "SubjectGroupDetails", CurriculumManagerConsts.DbSchema);
+                e.ConfigureByConvention();
+
             });
 
             builder.Entity<Subject>(e =>
@@ -84,7 +78,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.Property(x => x.Unit).IsRequired();
                 e.Property(x => x.Coefficient).IsRequired();
 
-                e.HasMany(x => x.SubjectGroups).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
+                e.HasMany(x => x.SubjectGroupDetails).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
                 e.HasMany(x => x.UserSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
                 e.HasOne(x => x.Outline).WithOne(x => x.Subject).HasForeignKey<Outline>(x => x.SubjectId);
             });
@@ -94,6 +88,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.ToTable(CurriculumManagerConsts.DbTablePrefix + "Outlines", CurriculumManagerConsts.DbSchema);
                 e.ConfigureByConvention();
 
+                e.Property(x => x.ApproveStatus).IsRequired();
                 e.HasMany(x => x.OutlineDocuments).WithOne(x => x.Outline).HasForeignKey(x => x.OutlineId);
             });
 
@@ -118,6 +113,12 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
             builder.Entity<UserSubject>(e =>
             {
                 e.ToTable(CurriculumManagerConsts.DbTablePrefix + "UserSubjects", CurriculumManagerConsts.DbSchema);
+                e.ConfigureByConvention();
+            });
+
+            builder.Entity<Genre>(e =>
+            {
+                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "Genres", CurriculumManagerConsts.DbSchema);
                 e.ConfigureByConvention();
             });
             /* Configure your own tables/entities inside here */

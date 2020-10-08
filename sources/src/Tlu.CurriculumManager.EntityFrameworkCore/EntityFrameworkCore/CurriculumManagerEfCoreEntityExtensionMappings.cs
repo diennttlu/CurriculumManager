@@ -16,6 +16,15 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
 
             OneTimeRunner.Run(() =>
             {
+                ObjectExtensionManager.Instance
+                         .MapEfCoreProperty<IdentityUser, int?>(
+                             "GenreId",
+                             (entityBuilder, propertyBuilder) =>
+                             {
+                                 propertyBuilder.IsRequired(false);
+                             }
+                         );
+
                 /* You can configure extra properties for the
                  * entities defined in the modules used by your application.
                  *

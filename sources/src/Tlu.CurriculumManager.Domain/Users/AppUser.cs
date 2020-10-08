@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.Users;
 
@@ -39,6 +41,12 @@ namespace Tlu.CurriculumManager.Users
         public virtual bool PhoneNumberConfirmed { get; private set; }
 
         #endregion
+
+        public int? GenreId { get; set; }
+
+        //public virtual Genre Genre { get; set; }
+
+        //public virtual ICollection<UserSubject> UserSubjects { get; set; }
 
         /* Add your own properties here. Example:
          *

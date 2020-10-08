@@ -11,4 +11,10 @@
         Reference = 0,
         Textbook = 1
     }
+
+    public enum ApproveStatus : int
+    {
+        Reject = 0,
+        Approved = 1
+    }
 }

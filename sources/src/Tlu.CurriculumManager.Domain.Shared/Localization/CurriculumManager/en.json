@@ -1,8 +1,43 @@
 {
   "culture": "en",
   "texts": {
+    "CurriculumManager": "Curriculum Management",
+
     "Menu:Home": "Home",
+    "Menu:SchoolYear": "School Year",
+    "Menu:Faculty": "Faculty",
+    "Menu:Major": "Major",
+    "Menu:Subject": "Subject",
+    "Menu:Subject.SubjectManagement": "Subject Management",
+
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application",
+    "ItemDeletionConfirmationMessage": "Are you sure to delete the item '{0}'?",
+    "SuccessfullyDeleted": "Successfully deleted!",
+
+    "New": "Create",
+
+    "Subjects": "Subject management",
+    "Subject": "Subject",
+    "Code": "Code",
+    "Name": "Name",
+    "Unit": "Unit",
+    "Condition": "Condition",
+    "HoursStudy": "Hours Study",
+    "Coefficient": "Coefficient",
+    "NewSubject": "Create subject",
+    "UpdateSubject": "Update subject",
+
+    "Faculties": "Faculty management",
+    "NewFaculty": "Create faculty",
+    "UpdateFaculty": "Update faculty",
+
+    "Majors": "Major management",
+    "NewMajor": "Create major",
+    "UpdateMajor": "Update major",
+
+    "SchoolYears": "School year management",
+    "NewSchoolYear": "Create school year",
+    "UpdateSchoolYear": "Update school year"
   }
 }

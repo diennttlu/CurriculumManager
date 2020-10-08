@@ -15,10 +15,6 @@ namespace Tlu.CurriculumManager
 
         public string Isbn { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
-
         public virtual ICollection<OutlineDocument> OutlineDocuments { get; set; }
 
         public Document()

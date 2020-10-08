@@ -1,15 +1,26 @@
-﻿using Volo.Abp.Domain.Entities;
+﻿using System.Collections.Generic;
+using Volo.Abp.Domain.Entities;
 
 namespace Tlu.CurriculumManager
 {
     public class SubjectGroup : Entity<int> 
     {
-        public int CurriculumDetailId { get; set; }
+        public string Name { get; set; }
+
+        public string Note { get; set; }
+
+        public int CurriculumId { get; set; }
 
         public int SubjectId { get; set; }
 
-        public virtual CurriculumDetail CurriculumDetail { get; set; }
+        public virtual Curriculum Curriculum { get; set; }
 
-        public virtual Subject Subject { get; set; }
+        public ICollection<SubjectGroupDetail> SubjectGroupDetails { get; set; }
+
+        public SubjectGroup()
+        {
+            SubjectGroupDetails = new HashSet<SubjectGroupDetail>();
+        }
+
     }
 }

@@ -8,10 +8,14 @@ namespace Tlu.CurriculumManager
     {
         public string Name { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
-
         public virtual ICollection<Major> Majors { get; set; }
+
+        public virtual ICollection<Genre> Genres { get; set; }
+
+        public Faculty()
+        {
+            Majors = new HashSet<Major>();
+            Genres = new HashSet<Genre>();
+        }
     }
 }

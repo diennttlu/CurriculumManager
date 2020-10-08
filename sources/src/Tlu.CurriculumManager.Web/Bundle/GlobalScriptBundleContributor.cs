@@ -7,6 +7,8 @@ namespace Tlu.CurriculumManager.Web.Bundle
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
             //context.Files.Clear();
+            context.Files.Add("/libs/moment/moment.js");
+            context.Files.Add("/libs/devmoba/core/devmoba.js");
         }
     }
 }

@@ -42,7 +42,8 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
 
             /* Configure your own tables/entities inside the ConfigureCurriculumManager method */
 
-            builder.ConfigureCurriculumManager();
+            builder.ConfigureCurriculumManager(true);
+            
         }
     }
 }

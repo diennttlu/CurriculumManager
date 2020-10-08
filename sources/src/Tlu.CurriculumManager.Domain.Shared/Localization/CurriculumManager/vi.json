@@ -1,8 +1,44 @@
 {
   "culture": "vi",
   "texts": {
+    "CurriculumManager": "Quản Lý Chương Trình Đào Tạo",
+
     "Menu:Home": "Trang chủ",
+    "Menu:SchoolYear": "Năm học",
+    "Menu:Faculty": "Khoa",
+    "Menu:Major": "Ngành",
+    "Menu:Subject": "Học phần",
+    "Menu:Subject.SubjectManagement": "Quản lý học phần",
+
     "Welcome": "Chào mừng bạn",
-    "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng. Đây là một dự án khởi nghiệp dựa trên khung ABP. Để biết thêm thông tin, hãy truy cập abp.io."
+    "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng quản lý chương trình đào tạo ĐH Thăng Long",
+    "ItemDeletionConfirmationMessage": "Bạn có chắc chắn xóa '{0}'?",
+    "SuccessfullyDeleted": "Xóa thành công!",
+
+    "New": "Thêm mới",
+
+    "Subjects": "Quản lý học phần",
+    "Subject": "Học phần",
+    "Code": "Mã học phần",
+    "Name": "Tên",
+    "Unit": "Số tín chỉ",
+    "Condition": "Điều kiện tiên quyết",
+    "HoursStudy": "Số giờ học",
+    "Coefficient": "Hệ số",
+    "NewSubject": "Tạo mới học phần",
+    "UpdateSubject": "Cập nhật học phần",
+
+    "Faculties": "Quản lý khoa",
+    "NewFaculty": "Tạo mới khoa",
+    "UpdateFaculty": "Cập nhật khoa",
+
+    "Majors": "Quản lý ngành",
+    "NewMajor": "Tạo mới ngành",
+    "UpdateMajor": "Cập nhật ngành",
+
+    "SchoolYears": "Quản lý năm học",
+    "NewSchoolYear": "Tạo năm học",
+    "UpdateSchoolYear": "Cập nhật năm học"
+
   }
 }

@@ -10,10 +10,14 @@ namespace Tlu.CurriculumManager
 
         public string Course { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
-
         public virtual ICollection<Curriculum> Curriculums { get; set; }
+
+        public virtual ICollection<Outline> Outlines { get; set; }
+
+        public SchoolYear()
+        {
+            Curriculums = new HashSet<Curriculum>();
+            Outlines = new HashSet<Outline>();
+        }
     }
 }

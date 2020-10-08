@@ -18,20 +18,16 @@ namespace Tlu.CurriculumManager
 
         public double Coefficient { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
-
         public virtual Outline Outline { get; set; }
 
         public virtual ICollection<UserSubject> UserSubjects { get; set; }
 
-        public virtual ICollection<SubjectGroup> SubjectGroups { get; set; }
+        public virtual ICollection<SubjectGroupDetail> SubjectGroupDetails { get; set; }
 
         public Subject()
         {
             UserSubjects = new HashSet<UserSubject>();
-            SubjectGroups = new HashSet<SubjectGroup>();
+            SubjectGroupDetails = new HashSet<SubjectGroupDetail>();
         }
     }
 }

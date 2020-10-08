@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tlu.CurriculumManager.Enums;
 using Volo.Abp.Domain.Entities;
 
 namespace Tlu.CurriculumManager
@@ -12,13 +13,15 @@ namespace Tlu.CurriculumManager
 
         public string Content { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
+        public ApproveStatus ApproveStatus { get; set; }
 
         public int SubjectId { get; set; }
 
+        public int OutlineId { get; set; }
+
         public virtual Subject Subject { get; set; }
+
+        public virtual SchoolYear SchoolYear { get; set; }
 
         public virtual ICollection<OutlineDocument> OutlineDocuments { get; set; }
 

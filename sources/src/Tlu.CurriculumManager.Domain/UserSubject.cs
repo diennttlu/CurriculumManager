@@ -1,4 +1,5 @@
 ﻿using System;
+using Tlu.CurriculumManager.Users;
 using Volo.Abp.Domain.Entities;
 
 namespace Tlu.CurriculumManager
@@ -10,5 +11,7 @@ namespace Tlu.CurriculumManager
         public Guid UserId { get; set; }
 
         public virtual Subject Subject { get; set; }
+
+        //public virtual AppUser User { get; set; }
     }
 }

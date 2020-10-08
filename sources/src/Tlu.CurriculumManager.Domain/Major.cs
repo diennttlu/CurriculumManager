@@ -12,10 +12,6 @@ namespace Tlu.CurriculumManager
 
         public virtual Faculty Faculty { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
-
         public virtual ICollection<Curriculum> Curriculums { get; set; }
 
         public Major()

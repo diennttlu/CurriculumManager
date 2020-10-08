@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tlu.CurriculumManager.Enums;
 using Volo.Abp.Domain.Entities;
 
 namespace Tlu.CurriculumManager
@@ -12,19 +13,17 @@ namespace Tlu.CurriculumManager
 
         public int SchoolYearId { get; set; }
 
-        public DateTimeOffset Created { get; set; }
-
-        public DateTimeOffset Modified { get; set; }
+        public ApproveStatus ApproveStatus { get; set; }
 
         public virtual Major Major { get; set; }
 
         public virtual SchoolYear SchoolYear { get; set; }
-
-        public virtual ICollection<CurriculumDetail> CurriculumDetails { get; set; }
+        
+        public ICollection<SubjectGroup> SubjectGroups { get; set; }
 
         public Curriculum()
         {
-            CurriculumDetails = new HashSet<CurriculumDetail>();
+            SubjectGroups = new HashSet<SubjectGroup>();
         }
     }
 }
