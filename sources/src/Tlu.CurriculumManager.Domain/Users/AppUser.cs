@@ -42,8 +42,6 @@ namespace Tlu.CurriculumManager.Users
 
         #endregion
 
-        public int? GenreId { get; set; }
-
         //public virtual Genre Genre { get; set; }
 
         //public virtual ICollection<UserSubject> UserSubjects { get; set; }

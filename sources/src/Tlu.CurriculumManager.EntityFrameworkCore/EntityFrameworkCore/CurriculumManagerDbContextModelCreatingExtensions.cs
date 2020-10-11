@@ -74,13 +74,12 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.HasIndex(x => x.Code).IsUnique();
 
                 e.Property(x => x.Name).IsRequired().HasMaxLength(1024);
-                e.Property(x => x.Code).IsRequired().HasMaxLength(5);
                 e.Property(x => x.Unit).IsRequired();
                 e.Property(x => x.Coefficient).IsRequired();
 
                 e.HasMany(x => x.SubjectGroupDetails).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
-                e.HasMany(x => x.UserSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
-                e.HasOne(x => x.Outline).WithOne(x => x.Subject).HasForeignKey<Outline>(x => x.SubjectId);
+                e.HasMany(x => x.TeacherSubjects).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
+                e.HasMany(x => x.Outlines).WithOne(x => x.Subject).HasForeignKey(x => x.SubjectId);
             });
 
             builder.Entity<Outline>(e =>
@@ -110,9 +109,9 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.Property(x => x.DocumentType).IsRequired().HasMaxLength(1);
             });
 
-            builder.Entity<UserSubject>(e =>
+            builder.Entity<TeacherSubject>(e =>
             {
-                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "UserSubjects", CurriculumManagerConsts.DbSchema);
+                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "TeacherSubjects", CurriculumManagerConsts.DbSchema);
                 e.ConfigureByConvention();
             });
 
@@ -120,6 +119,16 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
             {
                 e.ToTable(CurriculumManagerConsts.DbTablePrefix + "Genres", CurriculumManagerConsts.DbSchema);
                 e.ConfigureByConvention();
+
+                e.HasMany(x => x.Teachers).WithOne(x => x.Genre).HasForeignKey(x => x.GenreId);
+            });
+
+            builder.Entity<Teacher>(e =>
+            {
+                e.ToTable(CurriculumManagerConsts.DbTablePrefix + "Teachers", CurriculumManagerConsts.DbSchema);
+                e.ConfigureByConvention();
+
+                e.HasMany(x => x.TeacherSubjects).WithOne(x => x.Teacher).HasForeignKey(x => x.TeacherId);
             });
             /* Configure your own tables/entities inside here */
 

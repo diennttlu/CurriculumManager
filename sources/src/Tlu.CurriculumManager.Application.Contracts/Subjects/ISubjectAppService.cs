@@ -1,5 +1,6 @@
-﻿using Tlu.CurriculumManager.Subjects;
+﻿using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace Tlu.CurriculumManager.Subjects
 {
@@ -10,6 +11,6 @@ namespace Tlu.CurriculumManager.Subjects
         CreateUpdateSubjectDto,
         CreateUpdateSubjectDto>
     {
-
+        Task<bool> ImportFile(IFormFile file);
     }
 }

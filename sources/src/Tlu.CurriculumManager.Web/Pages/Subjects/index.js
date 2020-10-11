@@ -88,4 +88,24 @@
         e.preventDefault();
         createModal.open();
     });
+
+    $("#importSubFile").fileinput();
+    $("#importFile").submit(function (e) {
+        event.preventDefault();
+
+        $.ajax({
+            url: "/api/app/subject/importFile",
+            type: "POST",
+            data: new FormData($('#importFile')[0]),
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (result) {
+                if (result)
+                    dataTable.ajax.reload(); 
+                else 
+                    abp.notify.info("Chỉ chập nhận file .xls, .xlsx hoặc cấu trúc file không đúng!");
+            }
+        });
+    });
 });

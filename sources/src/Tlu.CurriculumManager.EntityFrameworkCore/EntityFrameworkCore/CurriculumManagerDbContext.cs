@@ -42,10 +42,11 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
 
         public DbSet<OutlineDocument> OutlineDocuments { get;set; }
 
-        public DbSet<UserSubject> UserSubjects { get; set; }
+        public DbSet<TeacherSubject> TeacherSubjects { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
 
+        public DbSet<Teacher> Teachers { get; set; }
 
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside CurriculumManagerDbContextModelCreatingExtensions.ConfigureCurriculumManager
@@ -69,9 +70,6 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 
                 b.ConfigureByConvention();
                 b.ConfigureAbpUser();
-
-                b.Property(x => x.GenreId).IsRequired(false);
-
                 /* Configure mappings for your additional properties
                  * Also see the CurriculumManagerEfCoreEntityExtensionMappings class
                  */

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tlu.CurriculumManager.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,14 +11,15 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Tlu.CurriculumManager.Migrations
 {
     [DbContext(typeof(CurriculumManagerMigrationsDbContext))]
-    partial class CurriculumManagerMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201009152041_Add_Teacher_Table")]
+    partial class Add_Teacher_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.SqlServer)
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -226,7 +228,9 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Code")
-                        .HasColumnType("varchar(100)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
 
                     b.Property<double>("Coefficient")
                         .HasColumnType("float");
@@ -248,8 +252,7 @@ namespace Tlu.CurriculumManager.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Code")
-                        .IsUnique()
-                        .HasFilter("[Code] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("AppSubjects");
                 });

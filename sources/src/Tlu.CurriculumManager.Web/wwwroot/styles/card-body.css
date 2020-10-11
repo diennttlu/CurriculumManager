@@ -5,7 +5,16 @@
     font-size: 12px;
 }
 
-table th input[type=text],.table th select {
+.btn-file {
+    background-color: #343a40;
+}
+
+.file-caption.form-control.kv-fileinput-caption {
+    height: 30px;
+    font-size: 13px;
+}
+
+table th input[type=text], .table th select {
     font-size: 12px;
 }
 

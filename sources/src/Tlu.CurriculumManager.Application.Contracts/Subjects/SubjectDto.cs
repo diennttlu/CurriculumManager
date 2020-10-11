@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Tlu.CurriculumManager.Outlines;
 using Tlu.CurriculumManager.SubjectGroupDetails;
-using Tlu.CurriculumManager.UserSubjects;
+using Tlu.CurriculumManager.TeacherSubjects;
 using Volo.Abp.Application.Dtos;
 
 namespace Tlu.CurriculumManager.Subjects
@@ -20,9 +20,9 @@ namespace Tlu.CurriculumManager.Subjects
 
         public double Coefficient { get; set; }
 
-        public OutlineDto Outline { get; set; }
+        public ICollection<OutlineDto> Outlines { get; set; }
 
-        public ICollection<UserSubjectDto> UserSubjects { get; set; }
+        public ICollection<TeacherSubjectDto> TeacherSubjects { get; set; }
 
         public ICollection<SubjectGroupDetailDto> SubjectGroupDetails { get; set; }
     }

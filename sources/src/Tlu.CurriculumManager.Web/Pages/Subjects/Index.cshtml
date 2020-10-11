@@ -8,16 +8,30 @@
     <abp-script-bundle>
         <abp-script src="/Pages/Subjects/index.js" />
     </abp-script-bundle>
+    <script src="~/libs/input-file-bs4/js/fileinput.min.js"></script>
+}
+
+@section styles {
+    <link href="/libs/input-file-bs4/css/fileinput.min.css" rel="stylesheet" />
+    <abp-style-bundle>
+        <abp-style src="/Pages/Subjects/Index.css" />
+    </abp-style-bundle>
 }
 
 <abp-card>
     <abp-card-header>
-        
+
         <abp-row>
-            <abp-column size-md="_6">
+            <abp-column size-md="_4">
                 <h4>@L["Subjects"]</h4>
             </abp-column>
-            <abp-column size-md="_6" class="text-right">
+            <abp-column size-md="_4" class="text-center">
+                <form id="importFile" method="post" enctype="multipart/form-data">
+                    <input id="importSubFile" name="file" type="file" class="file" data-preview-file-type="text" data-show-preview="false">
+                </form>
+            </abp-column>
+            <abp-column size-md="_4" class="text-right">
+                <a href="/api/controller/subjects/downloadFile" class="btn btn-dark">Template</a>
                 <abp-button id="NewSubjectButton" text="@L["New"].Value" icon="plus" button-type="Dark" />
             </abp-column>
         </abp-row>

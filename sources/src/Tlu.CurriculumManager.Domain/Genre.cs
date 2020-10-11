@@ -12,5 +12,7 @@ namespace Tlu.CurriculumManager
 
         public virtual Faculty Faculty { get; set; }
 
+        public virtual ICollection<Teacher> Teachers { get; set; }
+
     }
 }

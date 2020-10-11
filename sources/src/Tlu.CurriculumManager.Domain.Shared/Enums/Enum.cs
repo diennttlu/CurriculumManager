@@ -17,4 +17,10 @@
         Reject = 0,
         Approved = 1
     }
+
+    public enum Position : int
+    {
+        Normal = 0,
+        Lead = 1
+    }
 }

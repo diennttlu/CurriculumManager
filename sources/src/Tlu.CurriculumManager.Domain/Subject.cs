@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Volo.Abp.Domain.Entities;
 
 namespace Tlu.CurriculumManager
 {
     public class Subject : Entity<int>
     {
+        [Column(TypeName = "varchar(100)")]
         public string Code { get; set; }
 
         public string Name { get; set; }
@@ -18,15 +20,16 @@ namespace Tlu.CurriculumManager
 
         public double Coefficient { get; set; }
 
-        public virtual Outline Outline { get; set; }
+        public virtual ICollection<Outline> Outlines { get; set; }
 
-        public virtual ICollection<UserSubject> UserSubjects { get; set; }
+        public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
         public virtual ICollection<SubjectGroupDetail> SubjectGroupDetails { get; set; }
 
         public Subject()
         {
-            UserSubjects = new HashSet<UserSubject>();
+            Outlines = new HashSet<Outline>();
+            TeacherSubjects = new HashSet<TeacherSubject>();
             SubjectGroupDetails = new HashSet<SubjectGroupDetail>();
         }
     }
