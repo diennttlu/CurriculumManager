@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tlu.CurriculumManager.Curriculums;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
@@ -25,6 +26,9 @@ namespace Tlu.CurriculumManager
 
             CreateMap<SchoolYear, SchoolYearDto>();
             CreateMap<CreateUpdateSchoolYearDto, SchoolYear>();
+
+            CreateMap<Curriculum, CurriculumDto>();
+            CreateMap<CreateUpdateCurriculumDto, Curriculum>();
         }
     }
 }

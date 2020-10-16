@@ -36,6 +36,8 @@ namespace Tlu.CurriculumManager.Web.Menus
 
             context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Major, l["Menu:Major"], "/Majors"));
 
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Curriculum, l["Menu:Curriculum"], "/Curriculums"));
+
             context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Subject"])
                 .AddItem(
                     new ApplicationMenuItem(CurriculumManagerMenus.Subjects.SubjectManagement, l["Menu:Subject.SubjectManagement"], "/Subjects")

@@ -7,6 +7,7 @@
     "Menu:SchoolYear": "Năm học",
     "Menu:Faculty": "Khoa",
     "Menu:Major": "Ngành",
+    "Menu:Curriculum": "CTĐT",
     "Menu:Subject": "Học phần",
     "Menu:Subject.SubjectManagement": "Quản lý học phần",
 
@@ -35,6 +36,13 @@
     "Majors": "Quản lý ngành",
     "NewMajor": "Tạo mới ngành",
     "UpdateMajor": "Cập nhật ngành",
+
+    "Curriculums": "Quản lý chương trình đào tạo",
+    "Major": "Ngành học",
+    "SchoolYear": "Năm học",
+    "ApproveStatus": "Phê duyệt",
+    "NewCurriculum": "Thêm mới chương trình đào tạo",
+    "UpdateCurriculum": "Cập nhật chương trình đào tạo",
 
     "SchoolYears": "Quản lý năm học",
     "NewSchoolYear": "Tạo năm học",

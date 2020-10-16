@@ -7,6 +7,7 @@
         public const string Subject = Prefix + ".Subject";
         public const string Faculty = Prefix + ".Faculty";
         public const string Major = Prefix + ".Major";
+        public const string Curriculum = Prefix + ".Curriculum";
         public const string SchoolYear = Prefix + ".SchoolYear";
 
         public static class Subjects

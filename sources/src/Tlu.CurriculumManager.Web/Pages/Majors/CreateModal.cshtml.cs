@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,6 +51,7 @@ namespace Tlu.CurriculumManager.Web.Pages.Majors
             public string Name { get; set; }
 
             [Required]
+            [DisplayName("Khoa")]
             [SelectItems(nameof(Faculties))]
             public int FacultyId { get; set; }
         }

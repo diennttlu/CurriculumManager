@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Tlu.CurriculumManager.Curriculums;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.Subjects;
+using static Tlu.CurriculumManager.Web.Pages.Curriculums.CreateModalModel;
 using static Tlu.CurriculumManager.Web.Pages.Majors.CreateModalModel;
 
 namespace Tlu.CurriculumManager.Web
@@ -18,6 +20,9 @@ namespace Tlu.CurriculumManager.Web
 
             CreateMap<MajorFormModel, CreateUpdateMajorDto>();
             CreateMap<MajorDto, MajorFormModel> ();
+
+            CreateMap<CurriculumFormModel, CreateUpdateCurriculumDto>();
+            CreateMap<CurriculumDto, CurriculumFormModel>();
         }
     }
 }

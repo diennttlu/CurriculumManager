@@ -7,6 +7,7 @@
     "Menu:SchoolYear": "School Year",
     "Menu:Faculty": "Faculty",
     "Menu:Major": "Major",
+    "Menu:Curriculum": "Curriculum",
     "Menu:Subject": "Subject",
     "Menu:Subject.SubjectManagement": "Subject Management",
 
@@ -35,6 +36,12 @@
     "Majors": "Major management",
     "NewMajor": "Create major",
     "UpdateMajor": "Update major",
+
+    "Curriculums": "Curriculum management",
+    "Major": "Major",
+    "SchoolYear": "School year",
+    "NewCurriculum": "Create curriculum",
+    "UpdateCurriculum": "Update curriculum",
 
     "SchoolYears": "School year management",
     "NewSchoolYear": "Create school year",

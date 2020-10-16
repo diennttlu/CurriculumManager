@@ -1,11 +1,14 @@
 ﻿$(function () {
     var l = abp.localization.getResource('CurriculumManager');
-    var createModal = new abp.ModalManager(abp.appPath + 'Faculties/CreateModal');
-    var editModal = new abp.ModalManager(abp.appPath + 'Faculties/EditModal');
+    var createModal = new abp.ModalManager(abp.appPath + 'Curriculums/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'Curriculums/EditModal');
 
-    devmoba.datatables.enableIndividualColumnSearch('#FacultiesTable', [
+    devmoba.datatables.enableIndividualColumnSearch('#CurriculumsTable', [
         { name: "id" },
         { name: "name" },
+        { name: "majorId", options: allMajors },
+        { name: "schoolYearId", options: allSchoolYears },
+        { name: "approveStatus" },
         { searchDisabled: true }
     ]);
 
@@ -19,12 +22,15 @@
         scrollCollapse: true,
         orderCellsTop: true,
         order: [[0, "asc"]],
-        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.faculties.faculty.getList, () => {
+        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.curriculums.curriculum.getList, () => {
             return devmoba.datatables.searchHelper.getSearchConditions();
         }),
         columnDefs: [
             { targets: [0] },
             { targets: [1] },
+            { targets: [2] },
+            { targets: [3] },
+            { targets: [4] },
             {
                 rowAction: {
                     items: [
@@ -40,7 +46,7 @@
                                 return l('RecordDeletionConfirmationMessage', data.record.name);
                             },
                             action: function (data) {
-                                tlu.curriculumManager.faculties.facultie.delete(data.record.id)
+                                tlu.curriculumManager.curriculums.curriculum.delete(data.record.id)
                                     .then(function () {
                                         abp.notify.info(l('SuccessfullyDeleted'));
                                         dataTable.ajax.reload();
@@ -53,11 +59,14 @@
         ],
         columns: [
             { data: "id", width: "100px", className: "content-cell" },
-            { data: "name", width: "auto", className: "content-cell" },
+            { data: "name", width: "300px", className: "content-cell" },
+            { data: "major.name", width: "auto", className: "content-cell" },
+            { data: "schoolYear.name", width: "auto", className: "content-cell" },
+            { data: "approveStatus", width: "auto", className: "content-cell" },
         ]
     });
 
-    var dataTable = $('#FacultiesTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
+    var dataTable = $('#CurriculumsTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
 
     createModal.onResult(function () {
         dataTable.ajax.reload();
@@ -67,8 +76,11 @@
         dataTable.ajax.reload();
     });
 
-    $('#NewFacultyButton').click(function (e) {
+    $('#NewCurriculumButton').click(function (e) {
         e.preventDefault();
         createModal.open();
     });
+
+    $(".search_c_2").select2();
+    $(".search_c_3").select2();
 });
