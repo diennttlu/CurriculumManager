@@ -21,6 +21,11 @@ namespace Tlu.CurriculumManager.Curriculums
 
         }
 
+        public List<CurriculumDto> GetAllSelection()
+        {
+            return ObjectMapper.Map<List<Curriculum>, List<CurriculumDto>>(Repository.WithDetails(s => s.SchoolYear).ToList());
+        }
+
         public override Task<PagedResultDto<CurriculumDto>> GetListAsync(CurriculumFilterDto input)
         {
             var query = Repository.WithDetails(s => s.Major, s => s.SchoolYear).AsQueryable();

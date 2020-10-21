@@ -36,7 +36,21 @@ namespace Tlu.CurriculumManager.Web.Menus
 
             context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Major, l["Menu:Major"], "/Majors"));
 
-            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Curriculum, l["Menu:Curriculum"], "/Curriculums"));
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Curriculum, l["Menu:Curriculum"], "/Curriculums")
+                .AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Curriculums.CurriculumManagement, l["Menu:Curriculum.CurriculumManagement"], "/Curriculums")
+                ).AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Curriculums.CurriculumDetail, l["Menu:Curriculum.Detail"], "/Curriculums/Detail")
+                )
+            );
+
+            context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.SubjectGroup, l["Menu:SubjectGroup"])
+                .AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.SubjectGroups.SubjectGroupManagement, l["Menu:SubjectGroup.SubjectGroupManagement"] , "/SubjectGroups")
+                ).AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.SubjectGroups.SubjectGroupDetail, l["Menu:SubjectGroup.Detail"], "/SubjectGroupDetails")
+                )
+           );
 
             context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Subject"])
                 .AddItem(

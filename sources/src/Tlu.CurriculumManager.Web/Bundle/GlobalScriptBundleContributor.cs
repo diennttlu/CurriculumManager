@@ -9,6 +9,7 @@ namespace Tlu.CurriculumManager.Web.Bundle
             //context.Files.Clear();
             context.Files.Add("/libs/moment/moment.js");
             context.Files.Add("/libs/devmoba/core/devmoba.js");
+            context.Files.Add("/libs/knockout-js/knockout.js");
         }
     }
 }

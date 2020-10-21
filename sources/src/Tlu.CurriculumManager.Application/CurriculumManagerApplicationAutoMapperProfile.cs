@@ -3,6 +3,7 @@ using Tlu.CurriculumManager.Curriculums;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
+using Tlu.CurriculumManager.SubjectGroupDetails;
 using Tlu.CurriculumManager.SubjectGroups;
 using Tlu.CurriculumManager.Subjects;
 
@@ -29,6 +30,12 @@ namespace Tlu.CurriculumManager
 
             CreateMap<Curriculum, CurriculumDto>();
             CreateMap<CreateUpdateCurriculumDto, Curriculum>();
+
+            CreateMap<SubjectGroup, SubjectGroupDto>();
+            CreateMap<CreateUpdateSubjectGroupDto, SubjectGroup>();
+
+            CreateMap<SubjectGroupDetail, SubjectGroupDetailDto>();
+            CreateMap<CreateUpdateSubjectGroupDetailDto, SubjectGroupDetail>();
         }
     }
 }

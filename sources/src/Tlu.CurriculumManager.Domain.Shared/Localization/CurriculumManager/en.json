@@ -1,4 +1,4 @@
-{
+﻿{
   "culture": "en",
   "texts": {
     "CurriculumManager": "Curriculum Management",
@@ -8,6 +8,11 @@
     "Menu:Faculty": "Faculty",
     "Menu:Major": "Major",
     "Menu:Curriculum": "Curriculum",
+    "Menu:Curriculum.CurriculumManagement": "Curriculum Management",
+    "Menu:Curriculum.Detail": "Curriculum Detail",
+    "Menu:SubjectGroup": "Subject Group",
+    "Menu:SubjectGroup.SubjectGroupManagement": "Subject Group Management",
+    "Menu:SubjectGroup.Detail": "Subject Group Detail",
     "Menu:Subject": "Subject",
     "Menu:Subject.SubjectManagement": "Subject Management",
 
@@ -40,11 +45,22 @@
     "Curriculums": "Curriculum management",
     "Major": "Major",
     "SchoolYear": "School year",
+    "Approved": "Approved",
+    "Reject": "Reject",
     "NewCurriculum": "Create curriculum",
     "UpdateCurriculum": "Update curriculum",
 
+    "SubjectGroups": "Subject group management",
+    "Curriculum": "Curriculum",
+    "Parent": "Group Parent",
+    "Note": "Note",
+    "NewSubjectGroup": "Create subject group",
+    "UpdateSubjectGroup": "Update subject group",
+
     "SchoolYears": "School year management",
     "NewSchoolYear": "Create school year",
-    "UpdateSchoolYear": "Update school year"
+    "UpdateSchoolYear": "Update school year",
+
+    "SubjectGroupDetails": "Subject group detail"
   }
 }

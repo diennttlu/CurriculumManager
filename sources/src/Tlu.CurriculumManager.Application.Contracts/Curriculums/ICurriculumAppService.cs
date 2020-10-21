@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Application.Services;
+﻿using System.Collections.Generic;
+using Volo.Abp.Application.Services;
 
 namespace Tlu.CurriculumManager.Curriculums
 {
@@ -9,5 +10,6 @@ namespace Tlu.CurriculumManager.Curriculums
         CreateUpdateCurriculumDto,
         CreateUpdateCurriculumDto>
     {
+        List<CurriculumDto> GetAllSelection();
     }
 }

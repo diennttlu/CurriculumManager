@@ -58,4 +58,8 @@
     <None Include="wwwroot\templates\subject.xlsx" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\libs\knockout-js\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,67 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.SubjectGroupDetails.IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+
+@section scripts {
+    <script>
+        var allCurriculums = @Html.Raw(ViewData["allCurriculums"]);
+    </script>
+    <abp-script-bundle>
+        <abp-script src="/Pages/SubjectGroupDetails/index.js" />
+    </abp-script-bundle>
+}
+
+@section styles {
+    <abp-style-bundle>
+        <abp-style src="/Pages/SubjectGroupDetails/index.css" />
+    </abp-style-bundle>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <h4>@L["SubjectGroupDetails"]</h4>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <a href="/SubjectGroupDetails/AddToGroup" class="btn btn-dark">Thêm vào nhóm</a>
+            </abp-column>
+        </abp-row>
+        <abp-row>
+            <abp-column size-md="_4" style="padding-top: 15px;">
+                <select id="selectCurriculum" class="form-control" data-bind="options: curriculums, optionsText: 'text', optionsValue: 'value', value: selectedCurriculum"></select>
+            </abp-column>
+            <abp-column size-md="_3" style="padding-top: 15px;">
+                <select id="selectSubjectGroup" class="form-control" data-bind="options: subjectGroups, optionsText: 'name', optionsValue: 'id', value: selectedSubjectGroup"></select>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <table class="table table-striped table-bordered" id="SubjectGroupDetailsTable">
+            <thead>
+                <tr>
+                    <th>@L["ID"]</th>
+                    <th>@L["Code"]</th>
+                    <th>@L["Name"]</th>
+                    <th>@L["Unit"]</th>
+                    <th>@L["Condition"]</th>
+                    <th>@L["HoursStudy"]</th>
+                    <th>@L["Coefficient"]</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: subjects">
+                <tr>
+                    <td width="60px" class="content-cell" data-bind="text: id"></td>
+                    <td width="60px" class="content-cell" data-bind="text: code"></td>
+                    <td width="350px" class="content-cell" data-bind="text: name"></td>
+                    <td width="50px" class="content-cell" data-bind="text: unit"></td>
+                    <td width="120px" class="content-cell" data-bind="text: condition"></td>
+                    <td width="100px" class="content-cell" data-bind="text: hoursStudy"></td>
+                    <td width="50px" class="content-cell" data-bind="text: coefficient"></td>
+                </tr>
+            </tbody>
+        </table>
+    </abp-card-body>
+</abp-card>

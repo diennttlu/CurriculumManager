@@ -1,19 +1,15 @@
-﻿const ApproveStatus = {
-    Reject: 0,
-    Approve: 1
-}
-
-$(function () {
+﻿$(function () {
     var l = abp.localization.getResource('CurriculumManager');
-    var createModal = new abp.ModalManager(abp.appPath + 'Curriculums/CreateModal');
-    var editModal = new abp.ModalManager(abp.appPath + 'Curriculums/EditModal');
+    var createModal = new abp.ModalManager(abp.appPath + 'SubjectGroups/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'SubjectGroups/EditModal');
 
-    devmoba.datatables.enableIndividualColumnSearch('#CurriculumsTable', [
+    devmoba.datatables.enableIndividualColumnSearch('#SubjectGroupsTable', [
         { name: "id" },
         { name: "name" },
-        { name: "majorId", options: allMajors },
-        { name: "schoolYearId", options: allSchoolYears },
-        { name: "approveStatus" },
+        { name: "parentId", options: allSubjectGroups },
+        { searchDisabled: true },
+        { name: "curriculumId", options: allCurriculums },
+        { searchDisabled: true },
         { searchDisabled: true }
     ]);
 
@@ -27,21 +23,27 @@ $(function () {
         scrollCollapse: true,
         orderCellsTop: true,
         order: [[0, "asc"]],
-        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.curriculums.curriculum.getList, () => {
+        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.subjectGroups.subjectGroup.getList, () => {
             return devmoba.datatables.searchHelper.getSearchConditions();
         }),
         columnDefs: [
             { targets: [0] },
             { targets: [1] },
-            { targets: [2] },
-            { targets: [3] },
             {
-                targets: [4],
+                targets: [2],
                 render: function (data, row, type, meta) {
-                    if (data == ApproveStatus.Reject)
-                        return `<span style="color: red;">${ l("Reject") }</span>`;
-                    return `<span style="color: green;">${ l("Approved") }</span>`;
-                }   
+                    if (data)
+                        return data;
+                    return "";
+                }
+            },
+            { targets: [3] },
+            { targets: [4] },
+            {
+                targets: [5],
+                render: function (data, row, type, meta) {
+                    return `${data.name} - ${data.course}`;
+                }
             },
             {
                 rowAction: {
@@ -58,7 +60,7 @@ $(function () {
                                 return l('RecordDeletionConfirmationMessage', data.record.name);
                             },
                             action: function (data) {
-                                tlu.curriculumManager.curriculums.curriculum.delete(data.record.id)
+                                tlu.curriculumManager.subjectGroups.subjectGroup.delete(data.record.id)
                                     .then(function () {
                                         abp.notify.info(l('SuccessfullyDeleted'));
                                         dataTable.ajax.reload();
@@ -70,15 +72,16 @@ $(function () {
             }
         ],
         columns: [
-            { data: "id", width: "100px", className: "content-cell" },
+            { data: "id", width: "60px", className: "content-cell" },
             { data: "name", width: "300px", className: "content-cell" },
-            { data: "major.name", width: "auto", className: "content-cell" },
-            { data: "schoolYear.name", width: "auto", className: "content-cell" },
-            { data: "approveStatus", width: "auto", className: "content-cell" },
+            { data: "parent.name", width: "150px", className: "content-cell" },
+            { data: "note", width: "400px", className: "content-cell" },
+            { data: "curriculum.name", width: "300px", className: "content-cell" },
+            { data: "curriculum.schoolYear", width: "150px", className: "content-cell" },
         ]
     });
 
-    var dataTable = $('#CurriculumsTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
+    var dataTable = $('#SubjectGroupsTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
 
     createModal.onResult(function () {
         dataTable.ajax.reload();
@@ -88,7 +91,7 @@ $(function () {
         dataTable.ajax.reload();
     });
 
-    $('#NewCurriculumButton').click(function (e) {
+    $('#NewSubjectGroupButton').click(function (e) {
         e.preventDefault();
         createModal.open();
     });

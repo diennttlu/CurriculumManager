@@ -57,6 +57,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.Property(x => x.Name).IsRequired();
                 e.Property(x => x.CurriculumId).IsRequired();
                 e.HasMany(x => x.SubjectGroupDetails).WithOne(x => x.SubjectGroup).HasForeignKey(x => x.SubjectGroupId);
+                e.HasOne(x => x.Parent).WithMany(x => x.Childrens).HasForeignKey(x => x.ParentId);
             });
 
             builder.Entity<SubjectGroupDetail>(e =>

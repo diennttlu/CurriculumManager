@@ -8,6 +8,11 @@
     "Menu:Faculty": "Khoa",
     "Menu:Major": "Ngành",
     "Menu:Curriculum": "CTĐT",
+    "Menu:Curriculum.CurriculumManagement": "Quản lý CTĐT",
+    "Menu:Curriculum.Detail": "Chi tiết CTĐT",
+    "Menu:SubjectGroup": "Nhóm kiến thức",
+    "Menu:SubjectGroup.SubjectGroupManagement": "Quản lý nhóm kiến thức",
+    "Menu:SubjectGroup.Detail": "Chi tiết nhóm kiến thức",
     "Menu:Subject": "Học phần",
     "Menu:Subject.SubjectManagement": "Quản lý học phần",
 
@@ -41,12 +46,22 @@
     "Major": "Ngành học",
     "SchoolYear": "Năm học",
     "ApproveStatus": "Phê duyệt",
+    "Approved": "Đã duyệt",
+    "Reject": "Chưa duyệt",
     "NewCurriculum": "Thêm mới chương trình đào tạo",
     "UpdateCurriculum": "Cập nhật chương trình đào tạo",
 
+    "SubjectGroups": "Quản lý nhóm kiến thức",
+    "Curriculum": "Chương trình đào tạo",
+    "Parent": "Nhóm cha",
+    "Note": "Chú thích",
+    "NewSubjectGroup": "Thêm mới nhóm kiến thức",
+    "UpdateSubjectGroup": "Cập nhật nhóm kiến thức",
+
     "SchoolYears": "Quản lý năm học",
     "NewSchoolYear": "Tạo năm học",
-    "UpdateSchoolYear": "Cập nhật năm học"
+    "UpdateSchoolYear": "Cập nhật năm học",
 
+    "SubjectGroupDetails": "Chi tiết nhóm kiến thức"
   }
 }

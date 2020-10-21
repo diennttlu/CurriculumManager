@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tlu.CurriculumManager.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Tlu.CurriculumManager.Migrations
 {
     [DbContext(typeof(CurriculumManagerMigrationsDbContext))]
-    partial class CurriculumManagerMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201016150302_Edit_SubjectGroups_table")]
+    partial class Edit_SubjectGroups_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -280,8 +282,6 @@ namespace Tlu.CurriculumManager.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CurriculumId");
-
-                    b.HasIndex("ParentId");
 
                     b.ToTable("AppSubjectGroups");
                 });
@@ -2179,10 +2179,6 @@ namespace Tlu.CurriculumManager.Migrations
                         .HasForeignKey("CurriculumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Tlu.CurriculumManager.SubjectGroup", "Parent")
-                        .WithMany("Childrens")
-                        .HasForeignKey("ParentId");
                 });
 
             modelBuilder.Entity("Tlu.CurriculumManager.SubjectGroupDetail", b =>
