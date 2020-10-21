@@ -50,19 +50,6 @@ function SubjectGroupViewModel(curriculums) {
 var viewModel = new SubjectGroupViewModel(allCurriculums);
 
 $(function () {
-
-    //devmoba.datatables.enableIndividualColumnSearch('#SubjectGroupDetailsTable', [
-    //    { name: "id" },
-    //    { name: "code" },
-    //    { name: "name" },
-    //    { name: "unit", enableRangeFilter: true },
-    //    { name: "condition" },
-    //    { name: "hoursStudy" },
-    //    { name: "coefficient", enableRangeFilter: true }
-    //]);
-
-    //var datatableConfig = abp.libs.datatables.normalizeConfiguration();
-
     var dataTable = $('#SubjectGroupDetailsTable').DataTable({
         "processing": true,
         "serverSide": false,
