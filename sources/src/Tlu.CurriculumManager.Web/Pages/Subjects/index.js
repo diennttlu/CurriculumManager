@@ -104,7 +104,7 @@
                 if (result)
                     dataTable.ajax.reload(); 
                 else 
-                    abp.notify.info("Chỉ chập nhận file .xls, .xlsx hoặc cấu trúc file không đúng!");
+                    abp.notify.info("Upload không thành công!");
             }
         });
     });

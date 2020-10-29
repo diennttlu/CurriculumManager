@@ -1,4 +1,8 @@
 ﻿$(function () {
+    var self = this;
+    self.selectedId = ko.observable();
+    self.selectedCurriculumId = ko.observable();
+    self.selectedParentId = ko.observable();
     var l = abp.localization.getResource('CurriculumManager');
     var createModal = new abp.ModalManager(abp.appPath + 'SubjectGroups/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'SubjectGroups/EditModal');
@@ -51,6 +55,9 @@
                         {
                             text: l('Edit'),
                             action: function (data) {
+                                self.selectedId(data.record.id);
+                                self.selectedCurriculumId(data.record.curriculum.id);
+                                self.selectedParentId(data.record.parentId);
                                 editModal.open({ id: data.record.id });
                             }
                         },
@@ -85,6 +92,14 @@
 
     createModal.onResult(function () {
         dataTable.ajax.reload();
+    });
+
+    createModal.onOpen(() => {
+        ko.applyBindings(new CreateViewModel(allCurriculums), document.getElementById("createSubjectGroupForm"));
+    });
+
+    editModal.onOpen(() => {
+        ko.applyBindings(new EditViewModel(self.selectedId(), self.selectedCurriculumId(), self.selectedParentId()), document.getElementById("editSubjectGroupForm"));
     });
 
     editModal.onResult(function () {

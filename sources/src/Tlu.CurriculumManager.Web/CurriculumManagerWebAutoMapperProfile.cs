@@ -25,9 +25,6 @@ namespace Tlu.CurriculumManager.Web
 
             CreateMap<CurriculumFormModel, CreateUpdateCurriculumDto>();
             CreateMap<CurriculumDto, CurriculumFormModel>();
-
-            CreateMap<SubjectGroupFormModel, CreateUpdateSubjectGroupDto>();
-            CreateMap<SubjectGroupDto, SubjectGroupFormModel>();
         }
     }
 }

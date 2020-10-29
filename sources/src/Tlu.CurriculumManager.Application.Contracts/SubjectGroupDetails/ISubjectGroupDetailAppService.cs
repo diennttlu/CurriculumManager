@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tlu.CurriculumManager.Subjects;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace Tlu.CurriculumManager.SubjectGroupDetails
@@ -11,7 +12,8 @@ namespace Tlu.CurriculumManager.SubjectGroupDetails
         CreateUpdateSubjectGroupDetailDto,
         CreateUpdateSubjectGroupDetailDto>
     {
+        Task<bool> IsExists(CreateUpdateSubjectGroupDetailDto input);
         Task<List<SubjectGroupDetailDto>> GetBySubjectGroupId(int subjectGroupId);
-        Task<List<SubjectDto>> GetSubjectBySubjectGroupId(int subjectGroupId);
+        Task<PagedResultDto<object>> GetSubjectBySubjectGroupId(SubjectGroupDetailFilterDto input);
     }
 }

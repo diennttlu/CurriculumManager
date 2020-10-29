@@ -1,0 +1,9 @@
+﻿body {
+}
+.modal .modal-dialog {
+    max-width: 800px;
+}
+
+.modal-body .row {
+    padding: 10px 0px 10px 0px;
+}

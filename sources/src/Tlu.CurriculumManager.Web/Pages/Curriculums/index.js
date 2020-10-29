@@ -7,6 +7,7 @@ $(function () {
     var l = abp.localization.getResource('CurriculumManager');
     var createModal = new abp.ModalManager(abp.appPath + 'Curriculums/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'Curriculums/EditModal');
+    var createModalSubjectGroup = new abp.ModalManager(abp.appPath + 'SubjectGroups/CreateModal');
 
     devmoba.datatables.enableIndividualColumnSearch('#CurriculumsTable', [
         { name: "id" },
@@ -37,7 +38,7 @@ $(function () {
             { targets: [3] },
             {
                 targets: [4],
-                render: function (data, row, type, meta) {
+                render: function (data, type, row, meta) {
                     if (data == ApproveStatus.Reject)
                         return `<span style="color: red;">${ l("Reject") }</span>`;
                     return `<span style="color: green;">${ l("Approved") }</span>`;
@@ -91,6 +92,11 @@ $(function () {
     $('#NewCurriculumButton').click(function (e) {
         e.preventDefault();
         createModal.open();
+    });
+
+    $('#NewSubjectGroupButton').click(function (e) {
+        e.preventDefault();
+        createModalSubjectGroup.open();
     });
 
     $(".search_c_2").select2();

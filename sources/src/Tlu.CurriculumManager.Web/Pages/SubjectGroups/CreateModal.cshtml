@@ -12,13 +12,43 @@
         <abp-script src="/Pages/SubjectGroups/index.js" />
     </abp-script-bundle>
 }
-
-<abp-dynamic-form abp-model="SubjectGroup" asp-page="/SubjectGroups/CreateModal">
+<form id="createSubjectGroupForm" data-ajaxform="true" action="/SubjectGroups/CreateModal" method="post" novalidate="novalidate">
     <abp-modal>
         <abp-modal-header title="@L["NewSubjectGroup"].Value"></abp-modal-header>
         <abp-modal-body>
-            <abp-form-content />
+            <input type="hidden" name="__RequestVerificationToken" data-bind="value: abp.security.antiForgery.getToken()" />
+            <abp-row>
+                <abp-column size-md="_3">@L["Name"] *</abp-column>
+                <abp-column size-md="_9">
+                    <input name="Name" class="form-control" />
+                </abp-column>
+            </abp-row>
+            <abp-row>
+                <abp-column size-md="_3">Chương trình đào tạo *</abp-column>
+                <abp-column size-md="_9">
+                    <select name="CurriculumId" class="form-control" data-bind="options: curriculums, optionsText: 'text', optionsValue: 'value', value: selectedCurriculum"></select>
+                </abp-column>
+            </abp-row>
+            <abp-row>
+                <abp-column size-md="_3">Nhóm cha</abp-column>
+                <abp-column size-md="_9">
+                    <select name="ParentId" class="form-control" data-bind="options: subjectGroups, optionsText: 'name', optionsValue: 'id'"></select>
+                </abp-column>
+            </abp-row>
+            <abp-row>
+                <abp-column size-md="_3">@L["Note"]</abp-column>
+                <abp-column size-md="_9">
+                    <textarea name="Note" class="form-control"></textarea>
+                </abp-column>
+            </abp-row>
+            <abp-row>
+                <abp-column size-md="_3">Tổng số tín chỉ</abp-column>
+                <abp-column size-md="_9">
+                    <input name="UnitTotal" class="form-control" />
+                </abp-column>
+            </abp-row>
+
         </abp-modal-body>
         <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
     </abp-modal>
-</abp-dynamic-form>
+</form>

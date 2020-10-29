@@ -10,6 +10,7 @@ using Tlu.CurriculumManager.Repositories;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
+using NPOI.SS.UserModel;
 
 namespace Tlu.CurriculumManager.Subjects
 {
@@ -85,15 +86,22 @@ namespace Tlu.CurriculumManager.Subjects
                         var hssfwb = new XSSFWorkbook(stream);
                         var sheet = hssfwb.GetSheetAt(0);
                         var cellCount = sheet.GetRow(0).Cells.Count();
+                        
                         if (cellCount == 6)
                         {
                             var subjects = new List<Subject>();
                             var oldSubject = Repository.Select(x => x.Code).ToList();
                             var hashSet = new HashSet<string>(oldSubject);
 
-                            for (int row = 1; row <= sheet.LastRowNum; row++)
+                            for (int row = (sheet.FirstRowNum + 1); row <= sheet.LastRowNum; row++)
                             {
-                                if (sheet.GetRow(row) != null && hashSet.Add(sheet.GetRow(row).GetCell(0).ToString().Trim()))
+                                var getRow = sheet.GetRow(row);
+                                if (getRow == null) 
+                                    continue;
+                                if (getRow.Cells.All(d => d.CellType == CellType.Blank))
+                                    continue;
+                                
+                                if (hashSet.Add(sheet.GetRow(row).GetCell(0).ToString().Trim()))
                                 {
                                     var subject = new Subject()
                                     {

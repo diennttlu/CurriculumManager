@@ -1,61 +1,65 @@
-﻿function SubjectGroup(Id, Name) {
-    this.id = Id;
-    this.name = Name;
-}
-
-function Subject({ id, code, name, unit, condition, hoursStudy, coefficient }) {
-    this.id = id;
-    this.code = code;
-    this.name = name;
-    this.unit = unit;
-    this.condition = condition;
-    this.hoursStudy = hoursStudy;
-    this.coefficient = coefficient;
-}
-
-function SubjectGroupViewModel(curriculums) {
-    var self = this;
-    self.curriculums = curriculums;
-    self.selectedCurriculum = ko.observable(1);
-    self.selectedSubjectGroup = ko.observable();
-    self.subjectGroups = ko.observableArray([]);
-    self.subjects = ko.observableArray([]);
-
-    self.getSubjectGroups = ko.computed(function () {
-        if (self.selectedCurriculum() >= 1) {
-            tlu.curriculumManager.subjectGroups.subjectGroup.getByCurriculumId(self.selectedCurriculum()).done(function (result) {
-                self.subjectGroups.removeAll();
-                $.each(result, function (index, value) {
-                    self.subjectGroups.push(new SubjectGroup(
-                        value.id,
-                        value.name
-                    ));
-                });
-            });
-        }
-    });
-
-    self.getSubjects = ko.computed(function () {
-        if (self.selectedSubjectGroup() >= 1) {
-            tlu.curriculumManager.subjectGroupDetails.subjectGroupDetail.getSubjectBySubjectGroupId(self.selectedSubjectGroup()).done(function (result) {
-                self.subjects.removeAll();
-                $.each(result, function (index, value) {
-                    self.subjects.push(new Subject(value));
-                });
-            });
-        }
-    }); 
-}
-
+﻿
 var viewModel = new SubjectGroupViewModel(allCurriculums);
 
-$(function () {
-    var dataTable = $('#SubjectGroupDetailsTable').DataTable({
-        "processing": true,
-        "serverSide": false,
-        "searching": false
+ko.applyBindings(viewModel);
+var delayInMilliseconds = 300; //1 second
+
+setTimeout(function () {
+    var l = abp.localization.getResource('CurriculumManager');
+
+    moment.locale(abp.localization.currentCulture.twoLetterIsoLanguageName);
+
+    devmoba.datatables.enableIndividualColumnSearch('#SubjectGroupDetailsTable', [
+        { name: "id" },
+        { name: "code" },
+        { name: "name" },
+        { name: "unit", enableRangeFilter: true },
+        { name: "condition" },
+        { name: "hoursStudy" },
+        { name: "coefficient", enableRangeFilter: true },
+    ]);
+
+    var datatableConfig = abp.libs.datatables.normalizeConfiguration({
+        processing: true,
+        serverSide: false,
+        paging: true,
+        lengthMenu: [20, 30, 50, 100],
+        searching: true,
+        autoWidth: true,
+        scrollCollapse: true,
+        orderCellsTop: true,
+        order: [[0, "asc"]],
+        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.subjectGroupDetails.subjectGroupDetail.getSubjectBySubjectGroupId, () => {
+            var res = devmoba.datatables.searchHelper.getSearchConditions();
+            res.subjectGroupId = viewModel.selectedSubjectGroup();
+            return res;
+        }),
+        columnDefs: [
+            { targets: [0] },
+            { targets: [1] },
+            { targets: [2] },
+            { targets: [3] },
+            { targets: [4] },
+            { targets: [5] },
+            { targets: [6] },
+        ],
+        columns: [
+            { data: "id", width: "30px", className: "content-cell" },
+            { data: "code", width: "60px", className: "content-cell" },
+            { data: "name", width: "350px", className: "content-cell" },
+            { data: "unit", width: "80px", className: "content-cell" },
+            { data: "condition", width: "120px", className: "content-cell" },
+            { data: "hoursStudy", width: "100px", className: "content-cell" },
+            { data: "coefficient", width: "80px", className: "content-cell" }
+        ]
     });
 
-});
+    var dataTable = $('#SubjectGroupDetailsTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
 
-ko.applyBindings(viewModel);
+    $("#selectSubjectGroup").change(function () {
+        dataTable.ajax.reload();
+    });
+}, delayInMilliseconds);
+
+    
+

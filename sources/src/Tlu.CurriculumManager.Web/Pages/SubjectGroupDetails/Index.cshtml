@@ -9,6 +9,8 @@
         var allCurriculums = @Html.Raw(ViewData["allCurriculums"]);
     </script>
     <abp-script-bundle>
+
+        <abp-script src="/Pages/SubjectGroupDetails/SubjectGroupDetailViewModel.js" />
         <abp-script src="/Pages/SubjectGroupDetails/index.js" />
     </abp-script-bundle>
 }
@@ -51,17 +53,6 @@
                     <th>@L["Coefficient"]</th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: subjects">
-                <tr>
-                    <td width="60px" class="content-cell" data-bind="text: id"></td>
-                    <td width="60px" class="content-cell" data-bind="text: code"></td>
-                    <td width="350px" class="content-cell" data-bind="text: name"></td>
-                    <td width="50px" class="content-cell" data-bind="text: unit"></td>
-                    <td width="120px" class="content-cell" data-bind="text: condition"></td>
-                    <td width="100px" class="content-cell" data-bind="text: hoursStudy"></td>
-                    <td width="50px" class="content-cell" data-bind="text: coefficient"></td>
-                </tr>
-            </tbody>
         </table>
     </abp-card-body>
 </abp-card>

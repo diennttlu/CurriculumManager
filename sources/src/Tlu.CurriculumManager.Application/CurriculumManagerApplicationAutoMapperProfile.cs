@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Tlu.CurriculumManager.Curriculums;
 using Tlu.CurriculumManager.Faculties;
+using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.SubjectGroupDetails;
@@ -36,6 +37,9 @@ namespace Tlu.CurriculumManager
 
             CreateMap<SubjectGroupDetail, SubjectGroupDetailDto>();
             CreateMap<CreateUpdateSubjectGroupDetailDto, SubjectGroupDetail>();
+
+            CreateMap<Genre, GenreDto>();
+            CreateMap<CreateUpdateGenreDto, Genre>();
         }
     }
 }

@@ -35,6 +35,8 @@
     "UpdateSubject": "Cập nhật học phần",
 
     "Faculties": "Quản lý khoa",
+    "Faculty": "Ngành",
+    "Course": "Khóa",
     "NewFaculty": "Tạo mới khoa",
     "UpdateFaculty": "Cập nhật khoa",
 
