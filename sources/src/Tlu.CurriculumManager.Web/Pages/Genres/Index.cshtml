@@ -1,0 +1,39 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Genres.IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+
+@section scripts {
+    <script>
+        var allFaculties = @Html.Raw(ViewData["allFaculties"]);
+    </script>
+    <abp-script-bundle>
+        <abp-script src="/Pages/Genres/index.js" />
+    </abp-script-bundle>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <h4>@L["Genres"]</h4>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewGenreButton" text="@L["New"].Value" icon="plus" button-type="Dark" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <table class="table table-striped table-bordered" id="GenresTable">
+            <thead>
+                <tr>
+                    <th>@L["ID"]</th>
+                    <th>@L["Name"]</th>
+                    <th>@L["Faculty"]</th>
+                    <th>@L["Command"]</th>
+                </tr>
+            </thead>
+        </table>
+    </abp-card-body>
+</abp-card>

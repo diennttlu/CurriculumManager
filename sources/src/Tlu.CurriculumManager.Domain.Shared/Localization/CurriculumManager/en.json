@@ -16,6 +16,9 @@
     "Menu:Subject": "Subject",
     "Menu:Subject.SubjectManagement": "Subject Management",
 
+    "Menu:Faculty.FacultyManagement": "Faculty Management",
+    "Menu:Genre.GenreManagement": "Genre Management",
+
     "Welcome": "Welcome",
     "LongWelcomeMessage": "Welcome to the application",
     "ItemDeletionConfirmationMessage": "Are you sure to delete the item '{0}'?",

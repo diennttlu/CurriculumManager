@@ -10,6 +10,8 @@ namespace Tlu.CurriculumManager.SubjectGroups
 
         public string Note { get; set; }
 
+        public int DisplayOrder { get; set; }
+
         public int CurriculumId { get; set; }
 
         public CurriculumDto Curriculum { get; set; }

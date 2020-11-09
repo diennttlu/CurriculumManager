@@ -27,6 +27,12 @@
                 </abp-column>
             </abp-row>
             <abp-row>
+                <abp-column size-md="_3">Thứ tự hiển thị *</abp-column>
+                <abp-column size-md="_9">
+                    <input name="DisplayOrder" class="form-control" data-bind="value: subjectGroup().displayOrder" />
+                </abp-column>
+            </abp-row>
+            <abp-row>
                 <abp-column size-md="_3">Chương trình đào tạo *</abp-column>
                 <abp-column size-md="_9">
                     <select name="CurriculumId" class="form-control" data-bind="options: curriculums, optionsText: 'name', optionsValue: 'id', value: selectedCurriculum"></select>

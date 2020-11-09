@@ -8,6 +8,6 @@ namespace Tlu.CurriculumManager.Genres
 
         public string Name { get; set; }
 
-        public int? FaFacultyId { get; set; }
+        public int? FacultyId { get; set; }
     }
 }

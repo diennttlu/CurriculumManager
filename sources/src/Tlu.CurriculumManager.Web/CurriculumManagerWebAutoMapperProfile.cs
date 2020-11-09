@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Tlu.CurriculumManager.Curriculums;
 using Tlu.CurriculumManager.Faculties;
+using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
-using Tlu.CurriculumManager.SubjectGroups;
 using Tlu.CurriculumManager.Subjects;
 using static Tlu.CurriculumManager.Web.Pages.Curriculums.CreateModalModel;
+using static Tlu.CurriculumManager.Web.Pages.Genres.CreateModalModel;
 using static Tlu.CurriculumManager.Web.Pages.Majors.CreateModalModel;
-using static Tlu.CurriculumManager.Web.Pages.SubjectGroups.CreateModalModel;
 
 namespace Tlu.CurriculumManager.Web
 {
@@ -25,6 +25,9 @@ namespace Tlu.CurriculumManager.Web
 
             CreateMap<CurriculumFormModel, CreateUpdateCurriculumDto>();
             CreateMap<CurriculumDto, CurriculumFormModel>();
+
+            CreateMap<GenreFormModel, CreateUpdateGenreDto>();
+            CreateMap<GenreDto, GenreFormModel>();
         }
     }
 }

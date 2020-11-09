@@ -1,7 +1,8 @@
-﻿function SubjectGroup( Id, Name, Note, CurriculumId, ParentId, UnitTotal ) {
+﻿function SubjectGroup( Id, Name, Note, DisplayOrder, CurriculumId, ParentId, UnitTotal ) {
     this.id = Id;
     this.name = Name;
     this.note = Note;
+    this.displayOrder = DisplayOrder;
     this.curriculumId = CurriculumId;
     this.parentId = ParentId;
     this.unitTotal = UnitTotal;
@@ -27,6 +28,7 @@ function EditViewModel(id, curriculumId, parentId) {
             value.id,
             value.name,
             value.note,
+            value.displayOrder,
             value.curriculumId,
             value.parentId,
             value.UnitTotal));

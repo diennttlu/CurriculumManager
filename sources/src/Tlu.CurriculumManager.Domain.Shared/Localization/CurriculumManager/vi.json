@@ -16,6 +16,9 @@
     "Menu:Subject": "Học phần",
     "Menu:Subject.SubjectManagement": "Quản lý học phần",
 
+    "Menu:Faculty.FacultyManagement": "Quản lý khoa",
+    "Menu:Genre.GenreManagement": "Quản lý bộ môn",
+
     "Welcome": "Chào mừng bạn",
     "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng quản lý chương trình đào tạo ĐH Thăng Long",
     "ItemDeletionConfirmationMessage": "Bạn có chắc chắn xóa '{0}'?",
@@ -39,6 +42,10 @@
     "Course": "Khóa",
     "NewFaculty": "Tạo mới khoa",
     "UpdateFaculty": "Cập nhật khoa",
+
+    "Genres": "Quản lý bộ môn",
+    "NewGenre": "Tạo bộ môn",
+    "UpdateGenre": "Cập nhật bộ môn",
 
     "Majors": "Quản lý ngành",
     "NewMajor": "Tạo mới ngành",

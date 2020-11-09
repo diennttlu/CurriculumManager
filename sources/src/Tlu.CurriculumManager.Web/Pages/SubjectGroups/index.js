@@ -13,6 +13,7 @@
         { name: "parentId", options: allSubjectGroups },
         { searchDisabled: true },
         { name: "curriculumId", options: allCurriculums },
+        { name: "displayOrder" },
         { searchDisabled: true },
         { searchDisabled: true }
     ]);
@@ -49,6 +50,7 @@
                     return `${data.name} - ${data.course}`;
                 }
             },
+            { targets: [6] },
             {
                 rowAction: {
                     items: [
@@ -85,6 +87,7 @@
             { data: "note", width: "400px", className: "content-cell" },
             { data: "curriculum.name", width: "300px", className: "content-cell" },
             { data: "curriculum.schoolYear", width: "150px", className: "content-cell" },
+            { data: "displayOrder", width: "30px", className: "content-cell" },
         ]
     });
 

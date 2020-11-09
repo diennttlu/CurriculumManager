@@ -10,6 +10,8 @@ namespace Tlu.CurriculumManager
 
         public string Note { get; set; }
 
+        public int DisplayOrder { get; set; }
+
         public int CurriculumId { get; set; }
 
         public int? ParentId { get; set; }

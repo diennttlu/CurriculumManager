@@ -8,11 +8,19 @@
 
         public const string Faculty = Prefix + ".Faculty";
 
+        public const string Genre = Prefix + ".Genre";
+
         public const string Major = Prefix + ".Major";
 
         public const string SchoolYear = Prefix + ".SchoolYear";
 
         public const string Curriculum = Prefix + ".Curriculum";
+
+        public static class Facultys
+        {
+            public const string FacultyManagement = Faculty + ".FacultyManagement";
+            public const string GenreManagement = Genre + ".GenreManagement";
+        }
 
         public static class Curriculums
         {

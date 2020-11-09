@@ -14,5 +14,6 @@ namespace Tlu.CurriculumManager.Curriculums
         public int? SchoolYearId { get; set; }
 
         public ApproveStatus? ApproveStatus { get; set; }
+
     }
 }
