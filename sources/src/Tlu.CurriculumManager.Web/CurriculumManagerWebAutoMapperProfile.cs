@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Tlu.CurriculumManager.Curriculums;
+using Tlu.CurriculumManager.Documents;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
@@ -28,6 +29,8 @@ namespace Tlu.CurriculumManager.Web
 
             CreateMap<GenreFormModel, CreateUpdateGenreDto>();
             CreateMap<GenreDto, GenreFormModel>();
+
+            CreateMap<DocumentDto, CreateUpdateDocumentDto>();
         }
     }
 }

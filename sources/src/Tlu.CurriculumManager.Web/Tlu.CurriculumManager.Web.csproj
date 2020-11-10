@@ -59,6 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Teachers\" />
     <Folder Include="wwwroot\libs\knockout-js\" />
   </ItemGroup>
 

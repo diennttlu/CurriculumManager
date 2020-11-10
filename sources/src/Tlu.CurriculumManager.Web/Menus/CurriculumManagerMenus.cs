@@ -42,6 +42,14 @@
         public static class Subjects
         {
             public const string SubjectManagement = Subject + ".SubjectManagement";
+            public const string OutlineManagement = Subject + ".OutlineManagement";
+        }
+
+        public const string Document = Prefix + ".Document";
+
+        public static class Documents
+        {
+            public const string DocumentManagement = Document + ".DocumentManagement";
         }
         //Add your menu items here...
 

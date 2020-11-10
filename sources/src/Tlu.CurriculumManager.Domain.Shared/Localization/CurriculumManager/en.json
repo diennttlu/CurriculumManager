@@ -15,6 +15,9 @@
     "Menu:SubjectGroup.Detail": "Subject Group Detail",
     "Menu:Subject": "Subject",
     "Menu:Subject.SubjectManagement": "Subject Management",
+    "Menu:Subject.OutlineManagement": "Outline Management",
+    "Menu:Document": "Document",
+    "Menu:Document.DocumentManagement": "Document Management",
 
     "Menu:Faculty.FacultyManagement": "Faculty Management",
     "Menu:Genre.GenreManagement": "Genre Management",
@@ -64,6 +67,11 @@
     "NewSchoolYear": "Create school year",
     "UpdateSchoolYear": "Update school year",
 
-    "SubjectGroupDetails": "Subject group detail"
+    "SubjectGroupDetails": "Subject group detail",
+
+    "Documents": "Document management",
+    "CodeLibrany": "Code Librany",
+    "InLibrany": "In Librany",
+    "Isbn": "Isbn"
   }
 }

@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using Tlu.CurriculumManager.Curriculums;
+using Tlu.CurriculumManager.Documents;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
+using Tlu.CurriculumManager.Outlines;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.SubjectGroupDetails;
 using Tlu.CurriculumManager.SubjectGroups;
 using Tlu.CurriculumManager.Subjects;
+using Tlu.CurriculumManager.Teachers;
 
 namespace Tlu.CurriculumManager
 {
@@ -40,6 +43,15 @@ namespace Tlu.CurriculumManager
 
             CreateMap<Genre, GenreDto>();
             CreateMap<CreateUpdateGenreDto, Genre>();
+
+            CreateMap<Document, DocumentDto>();
+            CreateMap<CreateUpdateDocumentDto, Document>();
+
+            CreateMap<Outline, OutlineDto>();
+            CreateMap<CreateUpdateOutlineDto, Outline>();
+
+            CreateMap<Teacher, TeacherDto>();
+            CreateMap<CreateUpdateTeacherDto, Teacher>();
         }
     }
 }

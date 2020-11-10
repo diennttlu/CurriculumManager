@@ -15,6 +15,9 @@
     "Menu:SubjectGroup.Detail": "Chi tiết nhóm kiến thức",
     "Menu:Subject": "Học phần",
     "Menu:Subject.SubjectManagement": "Quản lý học phần",
+    "Menu:Subject.OutlineManagement": "Quản lý đề cương",
+    "Menu:Document": "Tài liệu",
+    "Menu:Document.DocumentManagement": "Quản lý tài liệu",
 
     "Menu:Faculty.FacultyManagement": "Quản lý khoa",
     "Menu:Genre.GenreManagement": "Quản lý bộ môn",
@@ -71,6 +74,13 @@
     "NewSchoolYear": "Tạo năm học",
     "UpdateSchoolYear": "Cập nhật năm học",
 
-    "SubjectGroupDetails": "Chi tiết nhóm kiến thức"
+    "SubjectGroupDetails": "Chi tiết nhóm kiến thức",
+
+    "Documents": "Quản lý tài liệu",
+    "CodeLibrany": "Mã thư viện",
+    "InLibrany": "Tình trạng",
+    "Isbn": "ISBN",
+    "NewDocument": "Thêm mới tài liệu",
+    "UpdateDocument": "Cập nhật tài liệu"
   }
 }

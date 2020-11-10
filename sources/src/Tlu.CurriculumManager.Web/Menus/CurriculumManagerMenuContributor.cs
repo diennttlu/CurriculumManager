@@ -61,6 +61,14 @@ namespace Tlu.CurriculumManager.Web.Menus
             context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Subject"])
                 .AddItem(
                     new ApplicationMenuItem(CurriculumManagerMenus.Subjects.SubjectManagement, l["Menu:Subject.SubjectManagement"], "/Subjects")
+                ).AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Subjects.OutlineManagement, l["Menu:Subject.OutlineManagement"], "/Outlines")
+                )
+            );
+
+            context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Document"])
+                .AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Documents.DocumentManagement, l["Menu:Document.DocumentManagement"], "/Documents")
                 )
             );
         }
