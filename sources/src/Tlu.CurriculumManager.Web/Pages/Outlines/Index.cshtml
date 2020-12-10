@@ -1,0 +1,26 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Outlines.IndexModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+
+@section scripts {
+    <abp-script-bundle>
+        <abp-script src="/Pages/Outlines/index.js" />
+    </abp-script-bundle>
+}
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <h4>@L["Outlines"]</h4>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewOutlineButton" text="@L["New"].Value" icon="plus" button-type="Dark" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+
+    </abp-card-body>
+</abp-card>

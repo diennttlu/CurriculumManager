@@ -23,4 +23,9 @@
         Normal = 0,
         Lead = 1
     }
+
+    public enum SubjectType : int
+    {
+        Language = 0,
+    }
 }

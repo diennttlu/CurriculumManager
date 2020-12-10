@@ -1,0 +1,16 @@
+﻿body {
+}
+.modal .modal-dialog {
+    max-width: 1600px;
+}
+.modal .modal-dialog .modal-content {
+    max-height: 720px;
+}
+.modal-body .row {
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.modal-body {
+    overflow-y: scroll;
+}

@@ -1,19 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@model Tlu.CurriculumManager.Curriculums.ExportPDFDto
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Curriculums.DetailModalModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+@{
+    Layout = null;
+}
+@section scripts {
+    <abp-script-bundle>
+        <abp-script src="/Pages/Curriculums/index.js" />
+    </abp-script-bundle>
+}
 @{
     var subjectGroups = Model.SubjectGroupReports;
-    var curriculum = Model.Curriculum;
 }
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    <div class="container-fluid">
+<abp-modal class="modal-detail">
+    <abp-modal-header title="@(Model.Curriculum.Name) - @(Model.Curriculum.SchoolYear.Name)"></abp-modal-header>
+    <abp-modal-body>
         <div class="row">
-            <div class="col-12" style="text-align: center;"><h2>@(curriculum.Name) - @(curriculum.SchoolYear.Name)</h2></div>
+            <div class="col-md-12"><a href="/api/controller/curriculums/exportPDF/@(Model.Curriculum.Id)" class="btn btn-dark float-right">Xuất PDF</a></div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -33,7 +39,7 @@
                                 @if (subjectGroup.Childrens.Count <= 0 && subjectGroup.Parent == null)
                                 {
                                     <tr>
-                                        <td colspan="@(!string.IsNullOrEmpty(subjectGroup.Note) ? '6' : '3')">
+                                        <td colspan="@(!string.IsNullOrEmpty(subjectGroup.Note) ? '6' : '1')">
                                             <b>@(subjectGroup.DisplayOrder). @(subjectGroup.Name)</b>&nbsp;&nbsp;
                                             <i>@(!string.IsNullOrEmpty(subjectGroup.Note) ? subjectGroup.Note : "")</i>
                                         </td>
@@ -53,7 +59,7 @@
                                 else if (subjectGroup.Parent == null && subjectGroup.Childrens.Count > 0)
                                 {
                                     <tr>
-                                        <td colspan="@(!string.IsNullOrEmpty(subjectGroup.Note) ? '6' : '3')">
+                                        <td colspan="@(!string.IsNullOrEmpty(subjectGroup.Note) ? '6' : '1')">
                                             <b>@(subjectGroup.DisplayOrder). @(subjectGroup.Name)</b>
                                             <i>@(!string.IsNullOrEmpty(subjectGroup.Note) ? subjectGroup.Note : "")</i>
                                         </td>
@@ -75,7 +81,7 @@
                                     @foreach (var child in subjectGroup.Childrens)
                                     {
                                         <tr>
-                                            <td colspan="@(!string.IsNullOrEmpty(child.Note) ? '6' : '3')" style="padding-left: 30px;">
+                                            <td colspan="@(!string.IsNullOrEmpty(child.Note) ? '6' : '1')" style="padding-left:30px;">
                                                 <b>@(subjectGroup.DisplayOrder).@(child.DisplayOrder) @(child.Name)</b>
                                                 <i>@(!string.IsNullOrEmpty(child.Note) ? child.Note : "")</i>
                                             </td>
@@ -97,7 +103,7 @@
                                             @foreach (var item in child.Childrens)
                                             {
                                                 <tr>
-                                                    <td colspan="@(!string.IsNullOrEmpty(item.Note) ? '6' : '3')" style="padding-left: 60px;">
+                                                    <td colspan="@(!string.IsNullOrEmpty(item.Note) ? '6' : '1')" style="padding-left: 60px;">
                                                         <i>@(item.Name)</i>
                                                         <i>@(!string.IsNullOrEmpty(item.Note) ? item.Note : "")</i>
                                                     </td>
@@ -124,6 +130,6 @@
                 </div>
             </div>
         </div>
-    </div>
-</body>
-</html>
+
+    </abp-modal-body>
+</abp-modal>

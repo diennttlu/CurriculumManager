@@ -26,11 +26,11 @@ function AddToGroupViewModel() {
     self.subjectGroups = ko.observableArray([]);
     self.subjects = ko.observableArray([]);
 
-    tlu.curriculumManager.curriculums.curriculum.getAllSelection().done(function (result) {
+    tlu.curriculumManager.curriculums.curriculum.getAllByLastSchoolYear().done(function (result) {
         $.each(result, function (index, value) {
             self.curriculums.push(new Curriculum(
                 value.id,
-                value.name
+                `${value.name} - ${value.schoolYear.course}`
             ));
         });
     });

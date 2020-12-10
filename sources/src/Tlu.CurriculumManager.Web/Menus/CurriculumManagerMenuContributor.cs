@@ -20,13 +20,14 @@ namespace Tlu.CurriculumManager.Web.Menus
 
         private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
+            var l = context.GetLocalizer<CurriculumManagerResource>();
             if (!MultiTenancyConsts.IsEnabled)
             {
                 var administration = context.Menu.GetAdministration();
                 administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
             }
-
-            var l = context.GetLocalizer<CurriculumManagerResource>();
+            
+            context.Menu.GetAdministration().AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Teachers.TeacherManagement, l["Menu:Teacher.TeacherManagement"], "/Teachers"));
 
             context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Home, l["Menu:Home"], "~/"));
 
@@ -45,8 +46,6 @@ namespace Tlu.CurriculumManager.Web.Menus
             context.Menu.Items.Add(new ApplicationMenuItem(CurriculumManagerMenus.Curriculum, l["Menu:Curriculum"])
                 .AddItem(
                     new ApplicationMenuItem(CurriculumManagerMenus.Curriculums.CurriculumManagement, l["Menu:Curriculum.CurriculumManagement"], "/Curriculums")
-                ).AddItem(
-                    new ApplicationMenuItem(CurriculumManagerMenus.Curriculums.CurriculumDetail, l["Menu:Curriculum.Detail"], "/Curriculums/Detail")
                 )
             );
 
@@ -69,6 +68,8 @@ namespace Tlu.CurriculumManager.Web.Menus
             context.Menu.AddItem(new ApplicationMenuItem(CurriculumManagerMenus.Subject, l["Menu:Document"])
                 .AddItem(
                     new ApplicationMenuItem(CurriculumManagerMenus.Documents.DocumentManagement, l["Menu:Document.DocumentManagement"], "/Documents")
+                ).AddItem(
+                    new ApplicationMenuItem(CurriculumManagerMenus.Documents.OutlineManagement, l["Menu:Document.OutlineManagement"], "/Outlines")
                 )
             );
         }

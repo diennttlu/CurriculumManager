@@ -1,7 +1,10 @@
 ﻿using Org.BouncyCastle.Math.EC.Rfc7748;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using Tlu.CurriculumManager.Enums;
+using Tlu.CurriculumManager.SubjectGroupDetails;
 using Tlu.CurriculumManager.SubjectGroups;
 using Tlu.CurriculumManager.Subjects;
 using Volo.Abp.Application.Dtos;
@@ -20,21 +23,34 @@ namespace Tlu.CurriculumManager.Curriculums
     {
         private readonly IRepository<SubjectGroup, int> _subjectGroupsRepository;
         private readonly IRepository<SubjectGroupDetail, int> _subjectGroupDetailRepository;
+        private readonly IRepository<SchoolYear, int> _schoolYearRepository;
 
         public CurriculumAppService(
             IRepository<Curriculum, int> repository,
             IRepository<SubjectGroup, int> subjectGroupsRepository,
-            IRepository<SubjectGroupDetail, int> subjectGroupDetailRepository
+            IRepository<SubjectGroupDetail, int> subjectGroupDetailRepository,
+            IRepository<SchoolYear, int> schoolYearRepository
             ) 
             : base(repository)
         {
             _subjectGroupsRepository = subjectGroupsRepository;
             _subjectGroupDetailRepository = subjectGroupDetailRepository;
+            _schoolYearRepository = schoolYearRepository;
+        }
+
+        public override Task<CurriculumDto> GetAsync(int id)
+        {
+            var curriculum = Repository.WithDetails(x => x.SchoolYear).Where(x => x.Id == id).FirstOrDefault();
+
+            return Task.FromResult(ObjectMapper.Map<Curriculum, CurriculumDto>(curriculum));
         }
 
         public List<CurriculumDto> GetAllBySchoolYearId(int schoolYearId)
         {
-            var curriculums = Repository.Where(x => x.SchoolYearId == schoolYearId).ToList();
+            var curriculums = Repository
+                .WithDetails(x => x.SchoolYear)
+                .Where(x => x.SchoolYearId == schoolYearId && x.ApproveStatus == ApproveStatus.Approved)
+                .ToList();
 
             return ObjectMapper.Map<List<Curriculum>, List<CurriculumDto>>(curriculums.OrderByDescending(x => x.Id).ToList());
         }
@@ -73,36 +89,55 @@ namespace Tlu.CurriculumManager.Curriculums
             return Task.FromResult(result);
         }
 
-        public Task<List<SubjectDto>> GetSubjectByCurriculumId(int curriculumId)
+        public Task<List<SubjectGroupReportDto>> GetSubjectGroupsByCurriculumId(int curriculumId)
         {
-            var subjectGroupsId = _subjectGroupsRepository
-                .WithDetails(x => x.SubjectGroupDetails)
-                .Where(x => x.CurriculumId == curriculumId).Select(x => x.Id).ToList();
-            var query = _subjectGroupDetailRepository.WithDetails(x => x.Subject).AsQueryable();
-            var subjects = query.Where(x => subjectGroupsId.Contains(x.SubjectGroupId)).Select(x => x.Subject).ToList();
-
-            return Task.FromResult(ObjectMapper.Map<List<Subject>, List<SubjectDto>>(subjects));
-        }
-
-        public Task<List<CurriculumExportDto>> ExportPDF(int curriculumId)
-        {
-            var exports = new List<CurriculumExportDto>();
+            var subjectGroupDetails = _subjectGroupDetailRepository.WithDetails(x => x.Subject).AsQueryable();
             var subjectGroups = _subjectGroupsRepository
                 .WithDetails(x => x.SubjectGroupDetails)
-                .Where(x => x.CurriculumId == curriculumId).ToList().OrderBy(x => x.DisplayOrder);
+                .Where(x => x.CurriculumId == curriculumId).Select(x => new SubjectGroupReportDto() 
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Note = x.Note,
+                    DisplayOrder = x.DisplayOrder,
+                    Parent = ObjectMapper.Map<SubjectGroup, SubjectGroupDto>(x.Parent),
+                    Childrens = ObjectMapper.Map<ICollection<SubjectGroup>, ICollection<SubjectGroupDto>>(x.Childrens)
+                }).ToList();
             foreach (var item in subjectGroups)
             {
-                var query = _subjectGroupDetailRepository.WithDetails(x => x.Subject).AsQueryable();
-                var subjects = query.Where(x => x.SubjectGroupId == item.Id).Select(x => x.Subject).ToList();
-                var subjectDtos = ObjectMapper.Map<List<Subject>, List<SubjectDto>>(subjects);
-                exports.Add(new CurriculumExportDto() 
+                var subjectGroupDetail = subjectGroupDetails.Where(x => x.SubjectGroupId == item.Id).ToList();
+                item.SubjectGroupDetails = ObjectMapper.Map<List<SubjectGroupDetail>, List<SubjectGroupDetailDto>>(subjectGroupDetail);
+                if (item.Childrens.Count > 0)
                 {
-                    SubjectGroup = ObjectMapper.Map<SubjectGroup, SubjectGroupDto>(item),
-                    Subjects = subjectDtos
-                });
+                    foreach(var child in item.Childrens)
+                    {
+                        var childSubjectGroupDetail = subjectGroupDetails.Where(x => x.SubjectGroupId == child.Id).ToList();
+                        child.SubjectGroupDetails = ObjectMapper.Map<List<SubjectGroupDetail>, List<SubjectGroupDetailDto>>(childSubjectGroupDetail);
+                        child.Childrens = ObjectMapper
+                            .Map<ICollection<SubjectGroup>, ICollection<SubjectGroupDto>>(_subjectGroupsRepository
+                            .Where(x => x.ParentId == child.Id).ToList());
+                        if (child.Childrens.Count > 0)
+                        {
+                            foreach (var childC in child.Childrens)
+                            {
+                                var childCSubjectGroupDetail = subjectGroupDetails.Where(x => x.SubjectGroupId == childC.Id).ToList();
+                                childC.SubjectGroupDetails = ObjectMapper.Map<List<SubjectGroupDetail>, List<SubjectGroupDetailDto>>(childSubjectGroupDetail);
+                            }
+                        }
+                    }
+                }
             }
+            return Task.FromResult(subjectGroups.OrderBy(x => x.Id).ToList());
+        }
 
-            return Task.FromResult(exports);
+        public List<CurriculumDto> GetAllByLastSchoolYear()
+        {
+            var lastSchoolYear = _schoolYearRepository.OrderByDescending(x => x.Id).FirstOrDefault();
+            var curriculums = Repository
+                .WithDetails(x => x.SchoolYear)
+                .Where(x => x.SchoolYearId == lastSchoolYear.Id)
+                .ToList();
+            return ObjectMapper.Map<List<Curriculum>, List<CurriculumDto>>(curriculums.OrderByDescending(x => x.Id).ToList());
         }
     }
 }

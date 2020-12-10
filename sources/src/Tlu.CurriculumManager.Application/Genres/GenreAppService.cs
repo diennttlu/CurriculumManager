@@ -19,6 +19,11 @@ namespace Tlu.CurriculumManager.Genres
         {
         }
 
+        public List<GenreDto> GetAllSelection()
+        {
+            return ObjectMapper.Map<List<Genre>, List<GenreDto>>(Repository.ToList());
+        }
+
         public override Task<PagedResultDto<GenreDto>> GetListAsync(GenreFilterDto input)
         {
 

@@ -28,7 +28,7 @@ namespace Tlu.CurriculumManager.SubjectGroups
 
         public Task<List<SubjectGroupDto>> GetByCurriculumIdAsync(int curriculumId)
         {
-            var subjectGroups = Repository.Where(x => x.CurriculumId == curriculumId).ToList();
+            var subjectGroups = Repository.WithDetails(x => x.Parent).Where(x => x.CurriculumId == curriculumId).ToList();
             return Task.FromResult(ObjectMapper.Map<List<SubjectGroup>, List<SubjectGroupDto>>(subjectGroups));
         }
 

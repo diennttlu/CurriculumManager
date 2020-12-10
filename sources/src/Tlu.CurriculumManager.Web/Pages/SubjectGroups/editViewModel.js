@@ -54,9 +54,13 @@ function EditViewModel(id, curriculumId, parentId) {
                     "--"
                 ));
                 $.each(result, function (index, value) {
+                    var name = `${value.displayOrder}. ${value.name}`;
+                    if (value.parent) {
+                        name = `${value.parent.displayOrder}.${value.displayOrder}. ${value.name}`;
+                    }
                     self.subjectGroups.push(new SubjectGroup(
                         value.id,
-                        value.name,
+                        name,
                         value.note,
                         value.curriculumId,
                         value.parentId,

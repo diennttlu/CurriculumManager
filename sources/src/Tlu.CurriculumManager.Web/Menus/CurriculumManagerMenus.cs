@@ -50,6 +50,15 @@
         public static class Documents
         {
             public const string DocumentManagement = Document + ".DocumentManagement";
+
+            public const string OutlineManagement = Document + ".OutlineManagement";
+        }
+
+        public const string Teacher = Prefix + ".Teacher";
+
+        public static class Teachers
+        {
+            public const string TeacherManagement = Teacher + ".TeacherManagement";
         }
         //Add your menu items here...
 

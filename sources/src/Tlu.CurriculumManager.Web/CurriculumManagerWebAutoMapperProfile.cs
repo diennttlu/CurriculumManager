@@ -6,9 +6,11 @@ using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.Subjects;
+using Tlu.CurriculumManager.Teachers;
 using static Tlu.CurriculumManager.Web.Pages.Curriculums.CreateModalModel;
 using static Tlu.CurriculumManager.Web.Pages.Genres.CreateModalModel;
 using static Tlu.CurriculumManager.Web.Pages.Majors.CreateModalModel;
+using static Tlu.CurriculumManager.Web.Pages.Teachers.CreateModalModel;
 
 namespace Tlu.CurriculumManager.Web
 {
@@ -31,6 +33,9 @@ namespace Tlu.CurriculumManager.Web
             CreateMap<GenreDto, GenreFormModel>();
 
             CreateMap<DocumentDto, CreateUpdateDocumentDto>();
+
+            CreateMap<TeacherFormModel, CreateUpdateTeacherDto>();
+            CreateMap<TeacherDto, TeacherFormModel>();
         }
     }
 }

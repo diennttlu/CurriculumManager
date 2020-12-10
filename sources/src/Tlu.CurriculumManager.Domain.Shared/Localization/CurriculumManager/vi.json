@@ -18,6 +18,9 @@
     "Menu:Subject.OutlineManagement": "Quản lý đề cương",
     "Menu:Document": "Tài liệu",
     "Menu:Document.DocumentManagement": "Quản lý tài liệu",
+    "Menu:Document.OutlineManagement": "Quản lý đề cương",
+    "Menu:Teacher": "Giáo viên",
+    "Menu:Teacher.TeacherManagement": "Quản lý giáo viên",
 
     "Menu:Faculty.FacultyManagement": "Quản lý khoa",
     "Menu:Genre.GenreManagement": "Quản lý bộ môn",
@@ -77,10 +80,18 @@
     "SubjectGroupDetails": "Chi tiết nhóm kiến thức",
 
     "Documents": "Quản lý tài liệu",
-    "CodeLibrany": "Mã thư viện",
-    "InLibrany": "Tình trạng",
-    "Isbn": "ISBN",
+    "LibraryCode": "Mã thư viện",
+    "InLibrary": "Tình trạng",
+    "ISBN": "ISBN",
     "NewDocument": "Thêm mới tài liệu",
-    "UpdateDocument": "Cập nhật tài liệu"
+    "UpdateDocument": "Cập nhật tài liệu",
+
+    "Outlines": "Quản lý đề cương",
+
+    "Teachers": "Quản lý giảng viên",
+    "Position": "Chức vụ",
+    "Genre": "Bộ môn",
+    "NewTeacher": "Thêm mới giảng viên",
+    "UpdateTeacher": "Cập nhật giảng viên"
   }
 }

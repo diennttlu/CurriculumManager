@@ -2,6 +2,7 @@
     Reject: 0,
     Approve: 1
 }
+var detailModal = new abp.ModalManager(abp.appPath + 'Curriculums/DetailModal');
 
 $(function () {
     var l = abp.localization.getResource('CurriculumManager');
@@ -32,8 +33,15 @@ $(function () {
             return devmoba.datatables.searchHelper.getSearchConditions();
         }),
         columnDefs: [
-            { targets: [0] },
-            { targets: [1] },
+            {
+                targets: [0],
+            },
+            {
+                targets: [1],
+                render: function (data, type, row, meta) {
+                    return `<a href="javascript:void(0)" onClick="showDetailModal(${row.id})" data-id="${row.id}">${data}</a>`;
+                }   
+            },
             { targets: [2] },
             { targets: [3] },
             {
@@ -106,3 +114,6 @@ $(function () {
     $(".search_c_2").select2();
     $(".search_c_3").select2();
 });
+function showDetailModal(id) {
+    detailModal.open({ id: id });
+}

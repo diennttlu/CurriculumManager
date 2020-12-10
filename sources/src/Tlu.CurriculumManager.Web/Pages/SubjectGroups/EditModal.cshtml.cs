@@ -35,7 +35,7 @@ namespace Tlu.CurriculumManager.Web.Pages.SubjectGroups
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _subjectGroupAppService.UpdateAsync(Id, SubjectGroup);
+            await _subjectGroupAppService.UpdateAsync(SubjectGroup.Id, SubjectGroup);
             return NoContent();
         }
 

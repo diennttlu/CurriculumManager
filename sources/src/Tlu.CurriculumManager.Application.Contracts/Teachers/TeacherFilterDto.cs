@@ -8,9 +8,9 @@ namespace Tlu.CurriculumManager.Teachers
     {
         public int? Id { get; set; }
 
-        public Guid? UserId { get; set; }
+        public string Name { get; set; }
 
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
 
         public Position? Position { get; set; }
     }

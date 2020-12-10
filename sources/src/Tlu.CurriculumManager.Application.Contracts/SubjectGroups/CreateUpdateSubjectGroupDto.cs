@@ -4,6 +4,8 @@ namespace Tlu.CurriculumManager.SubjectGroups
 {
     public class CreateUpdateSubjectGroupDto
     {
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -16,6 +18,6 @@ namespace Tlu.CurriculumManager.SubjectGroups
 
         public int? ParentId { get; set; }
 
-        public int? UnitTotal { get; set; }
+        //public int? UnitTotal { get; set; }
     }
 }

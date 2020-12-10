@@ -1,20 +1,21 @@
 ﻿$(function () {
     var l = abp.localization.getResource('CurriculumManager');
-    var createModal = new abp.ModalManager(abp.appPath + 'Documents/CreateModal');
-    var editModal = new abp.ModalManager(abp.appPath + 'Documents/EditModal');
+    var createModal = new abp.ModalManager(abp.appPath + 'Teachers/CreateModal');
+    var editModal = new abp.ModalManager(abp.appPath + 'Teachers/EditModal');
 
-    devmoba.datatables.enableIndividualColumnSearch('#DocumentsTable', [
+    moment.locale(abp.localization.currentCulture.twoLetterIsoLanguageName);
+
+    devmoba.datatables.enableIndividualColumnSearch('#TeachersTable', [
         { name: "id" },
         { name: "name" },
-        { name: "codeLibrany" },
-        { name: "inLibrany", options: inLibrany },
-        { name: "isbn" },
+        { name: "position" },
+        { name: "genre" },
         { searchDisabled: true }
     ]);
 
     var datatableConfig = abp.libs.datatables.normalizeConfiguration({
         processing: true,
-        serverSide: true,
+        serverSide: false,
         paging: true,
         lengthMenu: [10, 20, 30],
         searching: true,
@@ -22,20 +23,23 @@
         scrollCollapse: true,
         orderCellsTop: true,
         order: [[0, "asc"]],
-        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.documents.document.getList, () => {
+        ajax: abp.libs.datatables.createAjax(tlu.curriculumManager.teachers.teacher.getList, () => {
             return devmoba.datatables.searchHelper.getSearchConditions();
         }),
         columnDefs: [
-            { targets: [0] },
-            { targets: [1] },
-            { targets: [2] },
             {
-                targets: [3],
-                render: function (data, type, row, meta) {
-                    return data == 0 ? "<span style='color: red;'>Không có</span>" : "<span style='color: green;'>Có sẵn</span>";
+                targets: [0]
+            },
+            {
+                targets: [1]
+            },
+            {
+                targets: [2],
+                render: function(data, type, row, meta) {
+                    return data == 0 ? "Giảng viên" : "Trưởng bộ môn";
                 }
             },
-            { targets: [4] },
+            { targets: [3] },
             {
                 rowAction: {
                     items: [
@@ -51,7 +55,7 @@
                                 return l('RecordDeletionConfirmationMessage', data.record.name);
                             },
                             action: function (data) {
-                                tlu.curriculumManager.documents.document.delete(data.record.id)
+                                tlu.curriculumManager.teachers.teacher.delete(data.record.id)
                                     .then(function () {
                                         abp.notify.info(l('SuccessfullyDeleted'));
                                         dataTable.ajax.reload();
@@ -63,15 +67,14 @@
             }
         ],
         columns: [
-            { data: "id", width: "100px", className: "content-cell" },
-            { data: "name", width: "350px", className: "content-cell" },
-            { data: "codeLibrany", width: "200px", className: "content-cell" },
-            { data: "inLibrany", width: "200px", className: "content-cell" },
-            { data: "isbn", width: "200px", className: "content-cell" }
+            { data: "id", width: "30px", className: "content-cell" },
+            { data: "name", width: "300px", className: "content-cell" },
+            { data: "position", width: "300px", className: "content-cell" },
+            { data: "genre.name", width: "300px", className: "content-cell" }
         ]
     });
 
-    var dataTable = $('#DocumentsTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
+    var dataTable = $('#TeachersTable').DataTable(devmoba.datatables.fixDomConfiguration(datatableConfig));
 
     createModal.onResult(function () {
         dataTable.ajax.reload();
@@ -81,7 +84,7 @@
         dataTable.ajax.reload();
     });
 
-    $('#NewDocumentButton').click(function (e) {
+    $('#NewTeacherButton').click(function (e) {
         e.preventDefault();
         createModal.open();
     });

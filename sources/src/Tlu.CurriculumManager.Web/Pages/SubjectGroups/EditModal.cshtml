@@ -20,6 +20,7 @@
         <abp-modal-header title="@L["UpdateSubjectGroup"].Value"></abp-modal-header>
         <abp-modal-body>
             <input type="hidden" name="__RequestVerificationToken" data-bind="value: abp.security.antiForgery.getToken()" />
+            <input type="hidden" name="Id" data-bind="value: subjectGroup().id"/>
             <abp-row>
                 <abp-column size-md="_3">@L["Name"] *</abp-column>
                 <abp-column size-md="_9">

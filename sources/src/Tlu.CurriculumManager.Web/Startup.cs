@@ -15,6 +15,7 @@ namespace Tlu.CurriculumManager.Web
             services.AddSingleton<IFileProvider>(
                 new PhysicalFileProvider(
                     Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+            
         }
 
         public void Configure(IApplicationBuilder app)

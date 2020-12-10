@@ -7,6 +7,8 @@ namespace Tlu.CurriculumManager
 {
     public class Outline : Entity<int>
     {
+        public string Description { get; set; }
+
         public string Goal { get; set; }
 
         public string Assessment { get; set; }

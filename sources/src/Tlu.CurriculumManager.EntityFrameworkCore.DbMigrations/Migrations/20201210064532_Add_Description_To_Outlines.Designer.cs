@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tlu.CurriculumManager.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Tlu.CurriculumManager.Migrations
 {
     [DbContext(typeof(CurriculumManagerMigrationsDbContext))]
-    partial class CurriculumManagerMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201210064532_Add_Description_To_Outlines")]
+    partial class Add_Description_To_Outlines
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

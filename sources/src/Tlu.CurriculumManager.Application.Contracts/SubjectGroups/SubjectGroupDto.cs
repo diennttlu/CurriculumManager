@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Tlu.CurriculumManager.Curriculums;
+using Tlu.CurriculumManager.SubjectGroupDetails;
 using Volo.Abp.Application.Dtos;
 
 namespace Tlu.CurriculumManager.SubjectGroups
@@ -23,5 +24,7 @@ namespace Tlu.CurriculumManager.SubjectGroups
         public int? UnitTotal { get; set; }
 
         public ICollection<SubjectGroupDto> Childrens { get; set; }
+
+        public ICollection<SubjectGroupDetailDto> SubjectGroupDetails { get; set; }
     }
 }
