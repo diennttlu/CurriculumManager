@@ -7,16 +7,10 @@ namespace Tlu.CurriculumManager.Outlines
     {
         public int? Id { get; set; }
 
-        public string Goal { get; set; }
-
-        public string Assessment { get; set; }
-
-        public string Content { get; set; }
-
         public ApproveStatus? ApproveStatus { get; set; }
 
-        public int? SubjectId { get; set; }
+        public string SubjectName { get; set; }
 
-        public int? OutlineId { get; set; }
+        public int? SchoolYearId { get; set; }
     }
 }

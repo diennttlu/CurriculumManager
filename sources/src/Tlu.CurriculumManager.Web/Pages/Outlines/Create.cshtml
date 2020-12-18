@@ -1,0 +1,70 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Outlines.CreateModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+
+@section scripts {
+    <script>
+        var allSchoolYears = @Html.Raw(ViewData["allSchoolYears"]);
+    </script>
+    <abp-script-bundle>
+        <abp-script src="/Pages/Outlines/js/createViewModel.js" />
+        <abp-script src="/Pages/Outlines/js/createEdit.js" />
+    </abp-script-bundle>
+}
+
+@section styles {
+    <abp-style-bundle>
+        <abp-script src="/Pages/Outlines/css/create-edit.css" />
+    </abp-style-bundle>
+}
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <h4>Tạo mới đề cương</h4>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body style="font-size: 18px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <label class="col-md-4">Năm học</label>
+                        <select id="schoolYear" class="col-md-10 form-control" data-bind="options: schoolYears, optionsText: 'text', optionsValue: 'value', value: selectedSchoolYear"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <label class="col-md-3" style="padding-left: 105px;">Học phần</label>
+                        <select id="subject" class="col-md-9 form-control" data-bind="options: subjects, optionsText: 'name', optionsValue: 'id'"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-2">Mô tả học phần</label>
+                <textarea id="description" class="col-md-10 form-control" rows="6"></textarea>
+            </div>
+            <div class="row goal-editor">
+                <label class="col-md-2">Mục tiêu học phần</label>
+                <textarea id="goal" name="Goal" class="col-md-10 form-control" rows="6"></textarea>
+            </div>
+            <div class="row assessment-editor">
+                <label class="col-md-2">Đánh giá sinh viên</label>
+                <textarea id="assessment" name="Assessment" class="col-md-10 form-control" rows="6"></textarea>
+            </div>
+            <div class="row content-editor">
+                <label class="col-md-2">Nội dung chi tiết</label>
+                <textarea id="content" name="Content" class="col-md-10 form-control" rows="6"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-2 offset-md-2">
+                    <button id="submit" class="btn btn-dark">Thêm mới</button>
+                    <button id="cancel" class="btn btn-danger">Hủy bỏ</button>
+                </div>
+            </div>
+        </div>
+    </abp-card-body>
+</abp-card>

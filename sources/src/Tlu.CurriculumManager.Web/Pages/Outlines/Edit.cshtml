@@ -1,0 +1,67 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Outlines.EditModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+
+@section scripts {
+    <script>
+        var outline = @Html.Raw(ViewData["outline"]);
+    </script>
+    <abp-script-bundle>
+        <abp-script src="/Pages/Outlines/js/createEdit.js" />
+        <abp-script src="/Pages/Outlines/js/editViewModel.js" />
+    </abp-script-bundle>
+}
+
+@section styles {
+    <abp-style-bundle>
+        <abp-script src="/Pages/Outlines/css/create-edit.css" />
+    </abp-style-bundle>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <h4>Cập nhật đề cương</h4>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body style="font-size: 18px;">
+        <form id="editSubjectGroupForm" data-ajaxform="true" action="/Outlines/Edit" method="post" novalidate="novalidate">
+            <input type="hidden" name="__RequestVerificationToken" data-bind="value: abp.security.antiForgery.getToken()" />
+            <input type="hidden" name="Id" value="@(Model.Id)" />
+            <input type="hidden" name="SubjectId" value="@(Model.Outline.SubjectId)" />
+            <input type="hidden" name="SchoolYearId" value="@(Model.Outline.SchoolYearId)" />
+            <div class="container-fluid">
+                <div class="row">
+                    <label class="col-md-2">Phê duyệt</label>
+                    <select id="approveStatus" name="ApproveStatus" class="col-md-2 form-control" data-bind="options: approveStatus, optionsText: 'text', optionsValue: 'value', value: selectedApproveStatus()"></select>
+                </div>
+                <div class="row">
+                    <label class="col-md-2">Mô tả học phần</label>
+                    <textarea id="description" name="Description" class="col-md-10 form-control" rows="6">@(Model.Outline.Description)</textarea>
+                </div>
+                <div class="row goal-editor">
+                    <label class="col-md-2">Mục tiêu học phần</label>
+                    <textarea id="goal" name="Goal" class="col-md-10 form-control" rows="6">@(Model.Outline.Goal)</textarea>
+                </div>
+                <div class="row assessment-editor">
+                    <label class="col-md-2">Đánh giá sinh viên</label>
+                    <textarea id="assessment" name="Assessment" class="col-md-10 form-control" rows="6">@(Model.Outline.Assessment)</textarea>
+                </div>
+                <div class="row content-editor">
+                    <label class="col-md-2">Nội dung chi tiết</label>
+                    <textarea id="content" name="Content" class="col-md-10 form-control" rows="6">@(Model.Outline.Content)</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 offset-md-2">
+                        <button id="submit" type="submit" class="btn btn-dark">Cập nhật</button>
+                        <button id="cancel" class="btn btn-danger">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </abp-card-body>
+</abp-card>

@@ -4,6 +4,7 @@ using Tlu.CurriculumManager.Documents;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
+using Tlu.CurriculumManager.Outlines;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.Subjects;
 using Tlu.CurriculumManager.Teachers;
@@ -33,6 +34,7 @@ namespace Tlu.CurriculumManager.Web
             CreateMap<GenreDto, GenreFormModel>();
 
             CreateMap<DocumentDto, CreateUpdateDocumentDto>();
+            CreateMap<OutlineDto, CreateUpdateOutlineDto>();
 
             CreateMap<TeacherFormModel, CreateUpdateTeacherDto>();
             CreateMap<TeacherDto, TeacherFormModel>();

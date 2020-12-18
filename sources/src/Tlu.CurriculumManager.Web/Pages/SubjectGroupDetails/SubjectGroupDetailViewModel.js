@@ -1,5 +1,4 @@
-﻿
-function SubjectGroup(Id, Name) {
+﻿function SubjectGroup(Id, Name) {
     this.id = Id;
     this.name = Name;
 }

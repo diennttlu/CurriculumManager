@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Application.Services;
+﻿using System.Collections.Generic;
+using Volo.Abp.Application.Services;
 
 namespace Tlu.CurriculumManager.OutlineDocuments
 {
@@ -8,6 +9,6 @@ namespace Tlu.CurriculumManager.OutlineDocuments
         CreateUpdateOutlineDocumentDto,
         CreateUpdateOutlineDocumentDto>
     {
-
+        List<OutlineDocumentDto> GetListByOutlineId(int outlineId);
     }
 }

@@ -19,7 +19,7 @@ namespace Tlu.CurriculumManager
 
         public int SubjectId { get; set; }
 
-        public int OutlineId { get; set; }
+        public int SchoolYearId { get; set; }
 
         public virtual Subject Subject { get; set; }
 

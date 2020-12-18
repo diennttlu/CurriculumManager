@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Tlu.CurriculumManager.Outlines.OutlineDetailDto
+
+@{
+    var outline = Model;
+    var subject = Model.Subject;
+    var schoolYear = Model.SchoolYear;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/styles/outline-detail.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row outline-title">
+            <div class="col-md-12"><h4>ĐỀ CƯƠNG CHI TIẾT HỌC PHẦN</h4></div>
+        </div>
+        <div class="row outline-content">
+            <div class="col-md-12">
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">1. Tên học phần:</span><span>&nbsp;@subject.Name</span>
+                    </div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">2. Mã học phần:</span><span>&nbsp;@subject.Code</span>
+                    </div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">3. Mô tả học phần</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 content-text">@(outline.Description)</div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">4. Số tín chỉ(TC):</span><span>&nbsp;@subject.Unit</span>
+                    </div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">5. Điều kiện tiên quyết:</span><span>&nbsp;@subject.Condition</span>
+                    </div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">6. Thời lượng(giờ):</span><span>&nbsp;@subject.Coefficient</span>
+                    </div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">7. Mục tiêu học phần:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 content-text">@(outline.Goal)</div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">8. Tài liệu học tập:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    @if (outline.Documents != null)
+                    {
+                        var documentReferences = outline
+                            .Documents.Where(x => x.DocumentType == Tlu.CurriculumManager.Enums.DocumentType.Reference)
+                            .ToList();
+                        if (documentReferences != null)
+                        {
+                            <div class="col-md-3">- Tài liệu tham khảo:</div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    @for (int i = 0; i < documentReferences.Count; i++)
+                                    {
+                                        var document = documentReferences[i];
+                                        <div class="col-md-12">
+                                            [@(i + 1)] @(document.Name).<br>
+                                            @(!string.IsNullOrEmpty(document.Isbn) ? $"ISBN:{ document.Isbn }" : "")
+                                            @(!string.IsNullOrEmpty(document.LibraryCode) ? $"Thư viện:{ document.LibraryCode }" : "")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                        var documentTextbooks = outline
+                            .Documents.Where(x => x.DocumentType == Tlu.CurriculumManager.Enums.DocumentType.Textbook)
+                            .ToList();
+                        if (documentReferences != null)
+                        {
+                            <div class="col-md-3">- Giáo trình:</div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    @for (int i = 0; i < documentTextbooks.Count; i++)
+                                    {
+                                        var document = documentTextbooks[i];
+                                        <div class="col-md-12">
+                                            [@(i + 1)] @(document.Name).<br>
+                                            @(!string.IsNullOrEmpty(document.Isbn) ? $"ISBN:{ document.Isbn }" : "")
+                                            @(!string.IsNullOrEmpty(document.LibraryCode) ? $"Thư viện:{ document.LibraryCode }" : "")
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">9. Đánh giá sinh viên:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 content-text">@(outline.Assessment)</div>
+                </div>
+                <div class="row title">
+                    <div class="col-md-12">
+                        <span class="title-name">10. Nội dung chi tiết:</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 content-text">@(outline.Content)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

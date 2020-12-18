@@ -36,7 +36,7 @@ namespace Tlu.CurriculumManager.EntityFrameworkCore
                 e.Property(x => x.Name).IsRequired().HasMaxLength(128);
                 e.Property(x => x.Course).IsRequired().HasMaxLength(4);
                 e.HasMany(x => x.Curriculums).WithOne(x => x.SchoolYear).HasForeignKey(x => x.SchoolYearId);
-                e.HasMany(x => x.Outlines).WithOne(x => x.SchoolYear).HasForeignKey(x => x.OutlineId);
+                e.HasMany(x => x.Outlines).WithOne(x => x.SchoolYear).HasForeignKey(x => x.SchoolYearId);
             });
 
             builder.Entity<Curriculum>(e =>

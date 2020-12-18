@@ -1,0 +1,15 @@
+﻿body {
+}
+
+.row {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.outline-title .col-md-12 {
+    text-align: center;
+}
+
+    .outline-title .col-md-12 h4 {
+        font-weight: bold;
+    }

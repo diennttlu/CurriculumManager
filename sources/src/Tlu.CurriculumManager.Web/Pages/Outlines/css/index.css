@@ -1,0 +1,41 @@
+﻿body {
+}
+
+.modal .modal-dialog {
+    max-width: 1000px;
+}
+
+.modal-body {
+    overflow-y: scroll;
+}
+
+#detail-modal .modal-dialog {
+    max-width: 1265px;
+}
+#detail-modal .modal-body {
+    font-size: 18px;
+}
+
+.modal .modal-dialog .modal-content {
+    max-height: 750px;
+}   
+
+#detail-modal .modal-body .row {
+    padding-left: 10px;
+}
+.modal-body .row {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.outline-title .col-md-12 {
+    text-align: center;
+}
+.outline-title .col-md-12 h4 {
+    font-weight: bold;
+}
+
+.outline-content .title .title-name {
+    font-weight: bold;
+}

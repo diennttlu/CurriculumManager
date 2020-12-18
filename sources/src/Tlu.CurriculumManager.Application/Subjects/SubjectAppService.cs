@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.StaticFiles;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using Tlu.CurriculumManager.Permissions;
 using Tlu.CurriculumManager.Repositories;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
-using NPOI.SS.UserModel;
 
 namespace Tlu.CurriculumManager.Subjects
 {
+    
     public class SubjectAppService : CrudAppService<
         Subject,
         SubjectDto,
@@ -31,6 +32,7 @@ namespace Tlu.CurriculumManager.Subjects
             _subjectRepository = subjectRepository;
         }
 
+        [Authorize(CurriculumManagerPermissions.Subjects.Default)]
         public override Task<PagedResultDto<SubjectDto>> GetListAsync(SubjectFilterDto input)
         {
             var query = Repository.AsQueryable();
@@ -72,6 +74,24 @@ namespace Tlu.CurriculumManager.Subjects
             var items = query.ToList();
             var result = new PagedResultDto<SubjectDto>(count, ObjectMapper.Map<List<Subject>, List<SubjectDto>>(items));
             return Task.FromResult(result);
+        }
+
+        [Authorize(CurriculumManagerPermissions.Subjects.Default)]
+        public override Task<SubjectDto> GetAsync(int id)
+        {
+            return base.GetAsync(id);
+        }
+
+        [Authorize(CurriculumManagerPermissions.Subjects.Edit)]
+        public override Task<SubjectDto> UpdateAsync(int id, CreateUpdateSubjectDto input)
+        {
+            return base.UpdateAsync(id, input);
+        }
+
+        [Authorize(CurriculumManagerPermissions.Subjects.Delete)]
+        public override Task DeleteAsync(int id)
+        {
+            return base.DeleteAsync(id);
         }
 
         public async Task<bool> ImportFile(IFormFile file)
@@ -132,6 +152,7 @@ namespace Tlu.CurriculumManager.Subjects
             return await Task.FromResult(true);
         }
 
+        [Authorize(CurriculumManagerPermissions.Subjects.Create)]
         public override Task<SubjectDto> CreateAsync(CreateUpdateSubjectDto input)
         {
             return base.CreateAsync(input);

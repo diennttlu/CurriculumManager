@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 
 namespace Tlu.CurriculumManager.Outlines
@@ -11,5 +12,7 @@ namespace Tlu.CurriculumManager.Outlines
         CreateUpdateOutlineDto>
     {
         List<OutlineDto> GetAllSelection();
+
+        Task<OutlineDetailDto> GetDetailById(int id);
     }
 }

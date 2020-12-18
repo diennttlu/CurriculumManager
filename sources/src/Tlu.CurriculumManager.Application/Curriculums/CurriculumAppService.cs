@@ -139,5 +139,20 @@ namespace Tlu.CurriculumManager.Curriculums
                 .ToList();
             return ObjectMapper.Map<List<Curriculum>, List<CurriculumDto>>(curriculums.OrderByDescending(x => x.Id).ToList());
         }
+
+        public List<SubjectDto> GetSubjectsBySchoolYearId(int schoolYearId)
+        {
+            var subjectGroups = Repository.WithDetails(x => x.SubjectGroups)
+                .Where(x => x.SchoolYearId == schoolYearId)
+                .SelectMany(x => x.SubjectGroups)
+                .ToList();
+            var subjectGroupIds = subjectGroups.Select(x => x.Id).ToList();
+            var subjects = _subjectGroupDetailRepository
+                .WithDetails(x => x.Subject)
+                .Where(x => subjectGroupIds.Contains(x.SubjectGroupId))
+                .Select(x => x.Subject)
+                .Distinct().ToList();
+            return ObjectMapper.Map<List<Subject>, List<SubjectDto>>(subjects);
+        }
     }
 }

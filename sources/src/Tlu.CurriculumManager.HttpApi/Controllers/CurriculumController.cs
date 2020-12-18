@@ -17,7 +17,6 @@ namespace Tlu.CurriculumManager.Controllers
         {
             _curriculumAppService = curriculumAppService;
         }
-
         [HttpGet]
         [Route("exportPDF/{id}")]
         public async Task<IActionResult> ExportPDFAsync(int id)
@@ -29,7 +28,7 @@ namespace Tlu.CurriculumManager.Controllers
                 .UseFileSystemProject($"{currentFolder}\\Templates")
                 .UseMemoryCachingProvider()
                 .Build();
-            var model = new ExportPDFDto() 
+            var model = new ExportCurriculumPDFDto() 
             { 
                 SubjectGroupReports = exports,
                 Curriculum = curriculum

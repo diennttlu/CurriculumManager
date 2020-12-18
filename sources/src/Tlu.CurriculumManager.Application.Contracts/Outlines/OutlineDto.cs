@@ -21,8 +21,8 @@ namespace Tlu.CurriculumManager.Outlines
 
         public int SubjectId { get; set; }
 
-        public int OutlineId { get; set; }
-
+        public int SchoolYearId { get; set; }
+        
         public SubjectDto Subject { get; set; }
 
         public SchoolYearDto SchoolYear { get; set; }

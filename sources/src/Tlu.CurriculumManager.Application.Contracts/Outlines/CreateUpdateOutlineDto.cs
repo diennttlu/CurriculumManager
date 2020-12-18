@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using Tlu.CurriculumManager.Enums;
 
 namespace Tlu.CurriculumManager.Outlines
@@ -15,10 +13,13 @@ namespace Tlu.CurriculumManager.Outlines
 
         public string Content { get; set; }
 
+        [Required]
         public ApproveStatus ApproveStatus { get; set; }
 
+        [Required]
         public int SubjectId { get; set; }
 
-        public int OutlineId { get; set; }
+        [Required]
+        public int SchoolYearId { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿body {
+}
+
+.card-body {
+    font-size: 18px;
+}
+
+.card-body .row {
+    padding-bottom: 15px;
+}
+
+.card-body .row .ck.ck-editor {
+    width: 1344px;
+}
+
+.card-body .goal-editor .ck.ck-content {
+    height: 300px;
+}
+
+.card-body .assessment-editor .ck.ck-content {
+    height: 200px;
+}
+
+.card-body .content-editor .ck.ck-content {
+    height: 400px;
+}
+
+.col-md-3 .row .select2-container {
+    width: 260px;
+}
+
+.col-md-6 .row .select2-container {
+    width: 500px;
+}
+
+.col-md-4 .select2-container {
+    width: 522px;
+}
+
+

@@ -8,7 +8,11 @@ namespace Tlu.CurriculumManager.Permissions
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var myGroup = context.AddGroup(CurriculumManagerPermissions.GroupName);
+            var subjectGroup = context.AddGroup(CurriculumManagerPermissions.SubjectGroup, L("Học phần"));
+            var subjectPermission = subjectGroup.AddPermission(CurriculumManagerPermissions.Subjects.Default, L("Quản lý học phần"));
+            subjectPermission.AddChild(CurriculumManagerPermissions.Subjects.Create, L("Thêm học phần"));
+            subjectPermission.AddChild(CurriculumManagerPermissions.Subjects.Edit, L("Sửa học phần"));
+            subjectPermission.AddChild(CurriculumManagerPermissions.Subjects.Delete, L("Xóa học phần"));
 
             //Define your own permissions here. Example:
             //myGroup.AddPermission(CurriculumManagerPermissions.MyPermission1, L("Permission:MyPermission1"));

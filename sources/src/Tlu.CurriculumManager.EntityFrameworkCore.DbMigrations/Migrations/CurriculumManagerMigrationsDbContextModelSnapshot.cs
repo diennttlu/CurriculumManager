@@ -158,7 +158,7 @@ namespace Tlu.CurriculumManager.Migrations
                     b.Property<string>("Goal")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("OutlineId")
+                    b.Property<int>("SchoolYearId")
                         .HasColumnType("int");
 
                     b.Property<int>("SubjectId")
@@ -166,7 +166,7 @@ namespace Tlu.CurriculumManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OutlineId");
+                    b.HasIndex("SchoolYearId");
 
                     b.HasIndex("SubjectId");
 
@@ -2152,7 +2152,7 @@ namespace Tlu.CurriculumManager.Migrations
                 {
                     b.HasOne("Tlu.CurriculumManager.SchoolYear", "SchoolYear")
                         .WithMany("Outlines")
-                        .HasForeignKey("OutlineId")
+                        .HasForeignKey("SchoolYearId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

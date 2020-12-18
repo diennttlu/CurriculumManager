@@ -20,5 +20,7 @@ namespace Tlu.CurriculumManager.Curriculums
 
         Task<List<SubjectGroupReportDto>> GetSubjectGroupsByCurriculumId(int curriculumId);
 
+        List<SubjectDto> GetSubjectsBySchoolYearId(int schoolYearId);
+
     }
 }

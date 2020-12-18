@@ -1,4 +1,9 @@
-﻿$(function () {
+﻿const InLibrary = {
+    NotExist: 0,
+    Exist: 1
+}
+
+$(function () {
     var l = abp.localization.getResource('CurriculumManager');
     var createModal = new abp.ModalManager(abp.appPath + 'Documents/CreateModal');
     var editModal = new abp.ModalManager(abp.appPath + 'Documents/EditModal');
@@ -6,8 +11,8 @@
     devmoba.datatables.enableIndividualColumnSearch('#DocumentsTable', [
         { name: "id" },
         { name: "name" },
-        { name: "codeLibrany" },
-        { name: "inLibrany", options: inLibrany },
+        { name: "libraryCode" },
+        { name: "inLibrary", options: inLibrany },
         { name: "isbn" },
         { searchDisabled: true }
     ]);
@@ -32,7 +37,9 @@
             {
                 targets: [3],
                 render: function (data, type, row, meta) {
-                    return data == 0 ? "<span style='color: red;'>Không có</span>" : "<span style='color: green;'>Có sẵn</span>";
+                    if (data == InLibrary.NotExist)
+                        return `<span style="color: green;">Có sẵn</span>`;
+                    return `<span style="color: red;">Không có sẵn</span>`;
                 }
             },
             { targets: [4] },
@@ -65,8 +72,8 @@
         columns: [
             { data: "id", width: "100px", className: "content-cell" },
             { data: "name", width: "350px", className: "content-cell" },
-            { data: "codeLibrany", width: "200px", className: "content-cell" },
-            { data: "inLibrany", width: "200px", className: "content-cell" },
+            { data: "libraryCode", width: "200px", className: "content-cell" },
+            { data: "inLibrary", width: "200px", className: "content-cell" },
             { data: "isbn", width: "200px", className: "content-cell" }
         ]
     });

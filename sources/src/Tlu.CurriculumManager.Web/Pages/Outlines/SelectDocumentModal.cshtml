@@ -1,0 +1,47 @@
+﻿@page
+@model Tlu.CurriculumManager.Web.Pages.Outlines.SelectDocumentModalModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Tlu.CurriculumManager.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IHtmlLocalizer<CurriculumManagerResource> L
+@{
+    Layout = null;
+}
+@section scripts {
+    <abp-script-bundle>
+        <abp-script src="/Pages/Outlines/js/index.js" />
+    </abp-script-bundle>
+}
+
+<abp-modal>
+    <abp-modal-header title="Chọn tài liệu cho đề cương"></abp-modal-header>
+    <abp-modal-body>
+        <div id="select-document" class="container-fluid">
+            <div class="row" style="padding-bottom: 30px;">
+                <div class="col-md-12">
+                    <select id="document" class="form-control" data-bind="options: documents, optionsText: 'text', optionsValue: 'value', value: selectedDocument"></select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" data-bind="foreach: outlineDocuments">
+                    <div class="row" style="border-bottom: 1px solid #828282">
+                        <div class="col-md-6" style="margin-left: 15px;" data-bind="text: documentName"></div>
+                        <div class="col-md-4 form-control" style="text-align:center; margin-left: 10px;">
+                            <!-- ko if: documentType == 0 -->
+                            <input type="radio" data-bind="attr: { name: `DocumentType_${id}` }" value="0" checked="checked" /> Tài liệu tham khảo
+                            <input type="radio" data-bind="attr: { name: `DocumentType_${id}` }" value="1" /> Giáo trình
+                            <!-- /ko -->
+                            <!-- ko if: documentType == 1 -->
+                            <input type="radio" data-bind="attr: { name: `DocumentType_${id}` }" value="0" /> Tài liệu tham khảo
+                            <input type="radio" data-bind="attr: { name: `DocumentType_${id}` }" value="1" checked="checked"/> Giáo trình
+                            <!-- /ko -->
+
+                        </div>
+                        <div class="col-md-1"><button class="btn btn-outline-danger">X</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </abp-modal-body>
+    <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+</abp-modal>

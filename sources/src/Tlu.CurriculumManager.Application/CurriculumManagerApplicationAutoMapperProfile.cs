@@ -4,6 +4,7 @@ using Tlu.CurriculumManager.Documents;
 using Tlu.CurriculumManager.Faculties;
 using Tlu.CurriculumManager.Genres;
 using Tlu.CurriculumManager.Majors;
+using Tlu.CurriculumManager.OutlineDocuments;
 using Tlu.CurriculumManager.Outlines;
 using Tlu.CurriculumManager.SchoolYears;
 using Tlu.CurriculumManager.SubjectGroupDetails;
@@ -49,6 +50,9 @@ namespace Tlu.CurriculumManager
 
             CreateMap<Outline, OutlineDto>();
             CreateMap<CreateUpdateOutlineDto, Outline>();
+
+            CreateMap<OutlineDocument, OutlineDocumentDto>();
+            CreateMap<CreateUpdateOutlineDocumentDto, OutlineDocument>();
 
             CreateMap<Teacher, TeacherDto>();
             CreateMap<CreateUpdateTeacherDto, Teacher>();
