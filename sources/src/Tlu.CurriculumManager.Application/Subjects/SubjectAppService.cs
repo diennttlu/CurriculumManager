@@ -14,7 +14,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Tlu.CurriculumManager.Subjects
 {
-    
+    [Authorize]
     public class SubjectAppService : CrudAppService<
         Subject,
         SubjectDto,
